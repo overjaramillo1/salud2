@@ -1,0 +1,126 @@
+<div class="page-wrapper">	
+	<div id="body-content">
+		<div class="home-accommodation">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-3">
+						<div class="search">
+							<a href="javascript:;"  routerLink="/alojamiento/list-reserves">
+								<i class="fa fa-arrow-left" aria-hidden="true"></i>&nbsp; Atrás
+							</a>
+						</div>
+					</div>
+
+					<div class="col-md-9 text-right breadcrumbs ">
+						<a href="javascript:;" routerLink="/alojamiento" >
+							<i class="fa fa-chevron-right" aria-hidden="true"></i> B&uacute;squeda avanzada 
+						</a>
+						<a href="javascript:;" routerLink="/alojamiento/list-reserves">
+							<i class="fa fa-chevron-right" aria-hidden="true"></i> Mis reservas
+						</a>
+						<a href="javascript:;" class="active">
+							<i class="fa fa-chevron-right" aria-hidden="true"></i> Detalles pago
+						</a>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div  class="container-fluid" *ngIf="dataReserve != null">
+	<div class="container">
+
+		<div class="row">
+			<div class="col-md-12 text-left">
+				<h3 class="titles">Detalles pago</h3>
+			</div>
+		</div>
+		
+		<div class="spacer40"></div>
+
+		<div class="col-md-12 " >
+			<div class="row details p-10">
+				<div class="col-md-8">
+					<div class="table-responsive">
+						<table class="table border">
+							<thead>
+								<tr>
+									<th scope="col">Resumen </th>
+									
+									<th scope="col">Detalles</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<th class="sub-title"> Titular </th>
+									<th>{{user.primerNombre | titlecase}} {{user.segundoNombre | titlecase}} {{user.primerApellido | titlecase}} {{user.segundoApellido | titlecase}}</th>
+								</tr>
+								<tr>
+									<th class="sub-title"> Documento </th>
+									<th>{{dataReserve.identificacion}}</th>
+								</tr>
+								<tr>
+									<th class="sub-title"> Celular </th>
+									<th>{{ cellphone }}</th>
+								</tr>
+								<tr>
+									<th class="sub-title"> Correo Eléctronico </th>
+									<th>{{ email }}</th>
+								</tr>
+								<tr class="last-row">
+									<th class="sub-title"> Direcci&oacute;n </th>
+									<th>{{ address }}</th>
+								</tr>
+
+								<tr>
+									<th class="sub-title"> Banco: </th>
+									<th>{{ bankname }}</th>
+								</tr>
+								<tr>
+									<th class="sub-title"> Estado: </th>
+									<th>{{ code }}</th>
+								</tr>
+								<tr>
+									<th class="sub-title"> Identificador de la reserva: </th>
+									<th>{{ reserveId }}</th>
+								</tr>
+
+								<tr>
+									<th class="sub-title"> No Autorizaci&oacute;n/CUS: </th>
+									<th>{{ TrazabilityCode }}</th>
+								</tr>
+								<tr>
+									<th class="sub-title"> Fecha y hora de la transacci&oacute;n: </th>
+									<th>{{ date_hour| date:'long' }}</th>
+								</tr>
+								
+								<tr>
+									<th class="sub-title" scope="row">
+										Valor de la transacción:
+									</th>
+									<th>
+										{{ currency }} {{ value | number }}
+									</th>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<div class="overlay" [class.open]="showOverlay">
+	<div class="img text-center">
+		<img src="../../assets/images/loading.png" alt="" style=" width: 15%;margin-top: 5%">
+	</div>
+	<div class="row">
+		<div class="col-md-12 text-center loading-message">
+			<h2>{{mensaje}}</h2>
+		</div>
+	</div>
+</div>

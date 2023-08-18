@@ -1,0 +1,122 @@
+<div class="cf-login">
+  <div class="cf-content-login bg-white">
+    <div class="cf-content-header pt-2">
+      <!--<h3 style="color: #00afeb;">
+        Postulación para la entrega de subsidio dispositivo médico (glucómetro) <br>
+        Confa Salud, contigo siempre
+      </h3>-->
+      <p class="cf-message-login">
+        Si cumples con estos criterios y estás interesada en este kit, te invitamos a diligenciar la siguiente información.
+      </p>
+      <p class="cf-message-login">
+        Ingresa los datos de la usuaria que desea postularse a la entrega del subsidio.
+      </p>
+
+    </div>
+    <div class="cf-content-form mt-3">
+      <form [formGroup]="aFormGroup">
+        <div>
+          <div *ngIf="loggedin">
+            <div
+              *ngIf="loggedin.document != ''"
+              class="form-group cf-form-group-disabled"
+            >
+              <div>
+                <label class="strong">{{
+                  "health.login.fields.document" | translate
+                }}</label>
+              </div>
+              <div>
+                <label class="font-weight-bold">{{ loggedin.document }}</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div *ngIf="loggedin">
+            <div *ngIf="loggedin.document == ''" class="form-group">
+              <label>{{ "health.login.fields.document" | translate }}</label>
+              <input
+                type="number"
+                class="form-control cf-form-input"
+                placeholder="* {{ 'health.login.fields.document' | translate }}"
+                tooltip="Ingresa los datos de la persona que se postulara al beneficio."
+                placement="right"
+                formControlName="document"
+                triggers="hover focus"
+                containerClass="cf-tooltip"
+              />
+
+              <span
+                *ngIf="isControlHasError('document', 'required')"
+                class="badge badge-pill badge-danger cf-badge d-block mt-2 text-left"
+                >{{ documentFieldLogin }}</span
+              >
+              <span
+                *ngIf="isControlHasError('document', 'minLength')"
+                class="badge badge-pill badge-danger cf-badge d-block mt-2 text-left"
+                >Danger</span
+              >
+            </div>
+          </div>
+          <div class="form-group mt-4">
+            <div class="cf-custom-select">
+              <label>{{
+                "health.login.fields.document_type" | translate
+              }}</label>
+              <select
+                formControlName="documentType"
+                class="form-control cf-form-input"
+              >
+                <option value="" selected>
+                  * {{ "health.login.fields.document_type" | translate }}
+                </option>
+                <option *ngFor="let item of documentType" value="{{ item.id }}">
+                  {{ item.name }}
+                </option>
+              </select>
+            </div>
+
+            <span
+              *ngIf="isControlHasError('documentType', 'required')"
+              class="badge badge-pill badge-danger cf-badge d-block mt-2 text-left"
+              >{{ documentTypeFieldLogin }}</span
+            >
+          </div>
+          <div class="form-group mt-4 mb-3">
+            <label>{{ "health.login.fields.birthday" | translate }}</label>
+            <my-date-picker
+              formControlName="birthday"
+              class="cf-custom-datepicker"
+              [options]="dateOptionsInit"
+              placeholder="* {{ 'health.login.fields.birthday' | translate }}"
+            >
+            </my-date-picker>
+            <span
+              *ngIf="isControlHasError('birthday', 'required')"
+              class="badge badge-pill badge-danger cf-badge d-block mt-0 text-left"
+              >{{ birthdayFieldLogin }}</span
+            >
+          </div>
+          <div class="form-group mt-3 text-center">
+            <!--  <ngx-recaptcha2 #captchaElem [siteKey]="siteKey" (reset)="handleReset()"
+                            (expire)="handleExpire()" (load)="handleLoad()" (success)="handleSuccess($event)"
+                            [useGlobalDomain]="false" [size]="size" [hl]="lang" [theme]="theme" [type]="type"
+                            formControlName="recaptcha">
+                        </ngx-recaptcha2>  -->
+            <!-- <ngx-recaptcha2 class="m-auto recaptcha2" #captchaElem [siteKey]="siteKey"></ngx-recaptcha2> -->
+            <!--formControlName="recaptcha"-->
+          </div>
+        </div>
+        <div class="form-group mt-4">
+          <button
+            (click)="submit()"
+            class="btn btn-primary cf-btn cf-btn-primary cf-btn-block"
+          >
+            {{ "authentication.to_access" | translate }}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

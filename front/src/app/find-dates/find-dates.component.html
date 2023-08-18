@@ -1,0 +1,703 @@
+<app-welcome [showHideUserhealth]='false'>
+</app-welcome>
+<!-- Onboarding -->
+<app-onbd-alojamiento></app-onbd-alojamiento>
+
+
+<!-- TODO: Hacer modal de caducidad de token -->
+
+<!-- Modal -->
+<!-- <div class="modal fade" id="modalInfoAlojamiento" tabindex="-1" role="dialog" aria-labelledby="modalInfoAlojamientoTitle" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body p-0">
+                <img src="assets/images/Ajuste_Alojamiento.jpg" class="img-fluid" alt="" width="498">
+            </div>
+        </div>
+    </div>
+</div> -->
+
+
+<!-- <div class="container-fluid">
+    <div class="container">
+        <p class="m-0 pb-3">En Confa nos preocupamos por tu bienestar.</p>
+        <p class="m-0 pb-3">Las fechas de reserva de alojamiento en los Centros Recreacionales estarán suspendidas temporalmente, hasta que el Gobierno Nacional comunique que se habilita de nuevo el alojamiento turístico.</p>
+        <p class="m-0 pb-3">En Confa, tu Caja de Compensación e institución prestadora de servicios de salud, vamos un paso adelante en la prevención.</p>
+    </div>
+</div> -->
+
+<div class="container-fluid">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 p-10">
+                <h3>Reserva tu alojamiento</h3>
+                <span>Selecciona el Centro Recreacional y las fechas de entrada y salida que desees</span>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-3 col-12 p-10">
+                <select name="resort" id="resort" [(ngModel)]="resortSelect" [ngModelOptions]="{standalone: true}" (change)="onItemSelect()" class="form-control filter">
+					<option value="0" selected disabled>Centro Recreacional</option>
+					<!-- <option *ngFor="let resort of resortList" value="{{resort.identificadorCentro}}">
+                        {{resort.nombre | titlecase}}</option> -->
+                    <option   value="7"> El Bosque</option>
+					<option   value="4"> La Rochela</option>
+					<option   value="3"> Santágueda</option>
+				</select>
+                <i class="fa fa-chevron-down"></i>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-3 col-12 p-10">
+                <my-date-picker class="filter" [(ngModel)]="dat1" [options]="dateOptionsInit" [placeholder]="placeholderEntry" (dateChanged)="dateChange($event, 1)"></my-date-picker>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-3 col-12 p-10">
+                <my-date-picker #mydp="mydatepicker" [(ngModel)]="dat2" [options]="dateOptionsFinish" [placeholder]="placeholderOut" (dateChanged)="dateChange($event, 0)"></my-date-picker>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-3 col-12 p-10 {{otherFilter}}">
+                <select name="type_unit" id="type_unit" [(ngModel)]="filter_TypeUnit" [ngModelOptions]="{standalone: true}" class="form-control filter" (change)="getCapacityFilter()">
+					<option value="0">{{ 'forms.Type_unit' | translate }}</option>
+					<option *ngFor="let opt of options_TypeUnit" value="{{opt.identificador}}">{{opt.nombre}}</option>
+				</select>
+                <i class="fa fa-chevron-down"></i>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-3 col-12 p-10 {{otherFilter}}">
+                <select name="capacity" id="capacity" [(ngModel)]="filter_capacity" [ngModelOptions]="{standalone: true}" class="form-control filter ">
+					<option value="0" selected="true">{{ 'forms.capacity' | translate }}</option>
+					<option *ngFor="let optcap of option_capacity" value="{{optcap}}">{{optcap}}</option>
+				</select>
+                <i class="fa fa-chevron-down"></i>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-3 col-12 p-10">
+                <button class="btn btn-primary filter" (click)="filterHousingUnit()">Consultar &nbsp; <i
+						class="fa fa-search" aria-hidden="true"></i></button>
+            </div>
+        </div>
+        <div class="spacer20"></div>
+        <div id="information" #information>
+
+            <ng-container *ngIf="housingUnits.length > 0">
+                <div class="col-md-12 p-0 banner-medidas">
+                    <img style="width: 100%;" src="assets/images/Banner_Medidas_X2.jpg" class="img-fluid" alt="">
+                </div>
+                <div class="col-md-12 p-0 banner-medidas-mobile">
+                    <img style="width: 100%;" src="assets/images/Banner_Medidas_Mobile_X2.jpg" class="img-fluid" alt="">
+                    <div class="banner-text">
+                        <p><b>
+                            Estas son algunas de las medidas de prevención y mitigación ante el contagio de Covid-19 en los Centros Recreacionales:
+                        </b>
+                        </p>
+                        <ul class="list-items-medidas">
+
+                            <li> Capacitar al personal en normas y protocolos de bioseguridad. </li>
+                            <li> Divulgar las recomendaciones para prevenir enfermedades respiratorias. </li>
+                            <li> Delimitar áreas y distancias de seguridad para la atención de usuarios. </li>
+                            <li> Aumentar la frecuencia de limpieza y desinfección de áreas de alto flujo de personas, especialmente en las superficies (mostradores, barras, manijas, muebles, lavamanos, suelos, teléfonos, entre otros). </li>
+                            <li> Instalar desinfectantes en puntos estratégicos y de fácil acceso. </li>
+                            <li> Entregar elementos de protección respiratoria al personal directa e indirectamente expuesto. </li>
+                            <li> Momentos para el lavado de manos para el personal. </li>
+                            <li> El aforo máximo permite cumplir con el requisito de distancia interpersonal. </li>
+                            <li> Asegurar el abastecimiento de jabón de manos, gel antibacterial, toallas desechables, alcohol en concentración superiores a 60%, limpiadores y desinfectantes de superficies. </li>
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-12 resort-heading rochela" *ngIf="centroVacacionalId == 4">
+                    <div class="col-md-8 p-40">
+                        <h2>Centro Recreacional La Rochela</h2>
+                        <p>
+                            El Centro Recreacional La Rochela, en Palestina, estará listo para recibir a todas las familias que van alojarse en cabañas y apartamentos y los visitantes de paseo día, con actividades programadas, piscinas, juegos familiares, lagos de pesca y canoas.
+                        </p>
+                    </div>
+                    <div class="col-md-4 p-40">
+                        <h2>Descripci&oacute;n</h2>
+                        <ul>
+                            <li>Cabañas: 52</li>
+                            <li>Apartamentos: 12</li>
+                            <!-- <li>Zona de Camping con capacidad para 30 carpas</li> -->
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-12 resort-heading santagueda" *ngIf="centroVacacionalId == 3">
+                    <div class="col-md-8 p-40" *ngIf="centroVacacionalId == 3">
+                        <h2>Centro Recreacional Santágueda</h2>
+                        <p>
+                            Encontrarás un lugar perfecto para refrescarte, compartir en familia y realizar una actividad diferente y muy divertida en medio de las piscinas y las actividades familiares.
+                        </p>
+                    </div>
+                    <div class="col-md-4 p-40">
+                        <h2>Descripci&oacute;n</h2>
+                        <ul>
+                            <li>Cabañas: 29</li>
+                            <!-- <li>Zona de Camping con capacidad para 20 carpas</li> -->
+                        </ul>
+                    </div>
+                </div>
+                <div class="co-md-12 resort-heading bosque" *ngIf="centroVacacionalId == 7">
+                    <div class="col-md-8 p-40">
+                        <h2>Centro Recreacional El Bosque en Pensilvania</h2>
+                        <p>
+                            Si quieres alejarte de la ciudad, disfrutar de la naturaleza, el verde de las montañas, el cantar de las aves, caminar en el sendero ecológico y realizar actividades que inviten a la relajación.
+                        </p>
+                    </div>
+                    <div class="col-md-4 p-40">
+                        <h2>Descripci&oacute;n</h2>
+                        <ul>
+                            <li>Cabañas: 9</li>
+                            <li>Apartamentos: 8</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-md-12 contenido">
+                    <div class="card-group" *ngFor="let unit of housingUnits; let i = index ">
+                        <div class="col-md-4" *ngIf="unit.imagenes.length == 0">
+                            <div *ngIf="centroVacacionalId == 4">
+                                <img *ngIf="unit.imagenPrincipal" src="{{unit.imagenPrincipal}}" alt="{{ unit.nombreCentroVacacional }}" class="img-responsive image-border">
+                                <img *ngIf="!unit.imagenPrincipal" src="../../assets/images/roche-default-min.png" alt="" class="img-responsive image-border">
+                            </div>
+                            <div *ngIf="centroVacacionalId == 3">
+                                <img *ngIf="unit.imagenPrincipal" src="{{unit.imagenPrincipal}}" alt="{{ unit.nombreCentroVacacional }}" class="img-responsive image-border">
+                                <img *ngIf="!unit.imagenPrincipal" src="../../assets/images/santagueda-default-min.png" alt="" class="img-responsive image-border">
+                            </div>
+                            <div *ngIf="centroVacacionalId == 7">
+                                <img *ngIf="unit.imagenPrincipal" src="{{unit.imagenPrincipal}}" alt="{{ unit.nombreCentroVacacional }}" class="img-responsive image-border">
+                                <img *ngIf="!unit.imagenPrincipal" src="../../assets/images/bosque-default-min.png" alt="" class="img-responsive image-border">
+                            </div>
+                        </div>
+                        <div class="col-md-4" *ngIf="unit.imagenes.length > 0">
+                            <carousel *ngIf="centroVacacionalId == 4">
+                                <slide *ngFor="let img of unit.imagenes">
+                                    <img *ngIf="img.imagen" src="{{img.imagen}}" alt="first slide" style="display: block; width: 100%;" class="image-border">
+                                    <img *ngIf="!img.imagen" src="../../assets/images/roche-default-min.png" alt="" class="img-responsive image-border">
+                                </slide>
+                            </carousel>
+
+                            <carousel *ngIf="centroVacacionalId == 3">
+                                <slide *ngFor="let img of unit.imagenes">
+                                    <img *ngIf="img.imagen" src="{{img.imagen}}" alt="first slide" style="display: block; width: 100%;" class="image-border">
+                                    <img *ngIf="!img.imagen" src="../../assets/images/santagueda-default-min.png" alt="" class="img-responsive image-border">
+                                </slide>
+                            </carousel>
+
+                            <carousel *ngIf="centroVacacionalId == 7">
+                                <slide *ngFor="let img of unit.imagenes">
+                                    <img *ngIf="img.imagen" src="{{img.imagen}}" alt="first slide" style="display: block; width: 100%;" class="image-border">
+                                    <img *ngIf="!img.imagen" src="../../assets/images/bosque-default-min.png" alt="" class="img-responsive image-border">
+                                </slide>
+                            </carousel>
+                        </div>
+                        <div class="col-md-8" id="head{{i}}">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <span class="unit-subtitle">{{ unit.nombreCentroVacacional | titlecase | eliminarNumeros}}</span>
+                                    <ul>
+                                        <li><span class="unit-title">{{unit.numeroUnidad | eliminarNumeros}}</span></li>
+                                        <li><span class="unit-capacity">Capacidad de alojamiento:
+												<br>{{ unit.capacidad }} Personas</span></li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6 view-more-btn-responsive">
+                                    <div class="row">
+                                        <a href="javascript:;" class="btn view-more-btn p-10" (click)="getDetails(unit.centroVacacionalId, unit.unidadHabitacionalId, i)">Ver
+											m&aacute;s</a> &nbsp;
+                                        <div class="spacer10"></div>
+                                        <button href="javascript:;" class="btn btn-primary filter p-10" (click)="reserve(unit.centroVacacionalId, unit.unidadHabitacionalId, i)">Reservar</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <ul>
+                                        <li><span>DESDE:</span>
+                                            <div *ngFor="let valor of unit.valores">
+                                                <div *ngIf="valor.categoria == 'A'">
+                                                    <span class="important"> * ${{valor.valor | number}}</span> (categor&iacute;a A)
+                                                </div>
+                                            </div>
+                                        </li>
+
+                                        <li><small class="form-text text-muted">Costo variable según la categor&iacute;a
+												del subsidio.</small></li>
+                                        <li><small class="form-text text-muted">El valor indicado corresponde a una
+												noche de alojamiento del año en curso.</small></li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="costs row">
+                                        <div class="col-md-12 important" *ngIf="unit.busqueda == 'NO'">
+                                            <span><b class="unit-subtitle"> Disponible entre:</b>
+												<br>{{unit.fechaIngreso | date:'MMMM d (y)' | titlecase }} y
+												{{unit.fechaSalida | date:'MMMM d (y)' | titlecase}} </span>
+                                        </div>
+                                        <div class="spacer10"></div>
+                                        <span *ngFor="let valor of unit.valores" class="col-md-6 view-more-btn-responsive"><b>Categor&iacute;a
+												{{valor.categoria}}:&nbsp;</b> ${{valor.valor | number}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Div to navigate with scroll -->
+                        <ng-container class="" style="width: 100%;">
+                            <!-- Detalle unidad habitacional -->
+                            <div class="col-md-12 p-20 " [class.hidden]="detailsDiv != i" *ngIf="detailsHousing.length > 0">
+                                <ng-container *ngFor="let details of detailsHousing">
+
+                                    <div class="effect" *ngIf="details.unidadHabitacionalId == unit.unidadHabitacionalId">
+                                        <div class="col-md-12" id="tab{{i}}">
+                                            <tabset>
+                                                <tab heading="Im&aacute;genes" id="tab1">
+                                                    <div class="row">
+                                                        <div class="col-md-2">&nbsp;</div>
+                                                        <div class="col-md-8">
+
+
+                                                            <carousel *ngIf="centroVacacionalId == 4">
+                                                                <div *ngIf="details.imagenes.length > 0">
+                                                                    <slide *ngFor="let img of details.imagenes">
+                                                                        <img src="{{img.imagen}}" alt="first slide" style="display: block; max-width: 630px; max-height: 350px;" class="image-border">
+                                                                    </slide>
+                                                                </div>
+                                                                <div *ngIf="details.imagenes.length == 0">
+                                                                    <img src="../../assets/images/roche-default-max.png" alt="" style="display: block; max-width: 630px; max-height: 350px;" class="image-border">
+                                                                </div>
+                                                            </carousel>
+
+                                                            <carousel *ngIf="centroVacacionalId == 3">
+                                                                <div *ngIf="details.imagenes.length > 0">
+                                                                    <slide *ngFor="let img of details.imagenes">
+                                                                        <img src="{{img.imagen}}" alt="first slide" style="display: block; max-width: 630px; max-height: 350px;" class="image-border">
+                                                                    </slide>
+                                                                </div>
+                                                                <div *ngIf="details.imagenes.length == 0">
+                                                                    <img src="../../assets/images/santagueda-default-max.png" alt="" style="display: block; max-width: 630px; max-height: 350px;" class="image-border">
+                                                                </div>
+                                                            </carousel>
+
+                                                            <carousel *ngIf="centroVacacionalId == 7">
+                                                                <div *ngIf="details.imagenes.length > 0">
+                                                                    <slide *ngFor="let img of details.imagenes">
+                                                                        <img src="{{img.imagen}}" alt="first slide" style="display: block; max-width: 630px; max-height: 350px;" class="image-border">
+                                                                    </slide>
+                                                                </div>
+                                                                <div *ngIf="details.imagenes.length == 0">
+                                                                    <img src="../../assets/images/bosque-default-max.png" alt="" style="display: block; max-width: 630px; max-height: 350px;" class="image-border">
+                                                                </div>
+                                                            </carousel>
+                                                        </div>
+                                                        <div class="col-md-2">&nbsp;</div>
+                                                    </div>
+                                                </tab>
+                                                <tab heading="Descripci&oacute;n" id="descripcion">
+
+                                                    <!-- Centro recreacional la rochela -->
+                                                    <div class="col-md-12" *ngIf="unit.centroVacacionalId == 4">
+                                                        <p>
+                                                            El paisaje cafetero, la calidez del ambiente y el cielo azul claro, son cómplices de este sitio que invita al descanso en familia; 52 cabañas y 36 apartamentos para Departamento. Disfruta de hotelería de lujo, excelentes acabados, conectividad y automatización
+                                                            en los apartamentos ubicados en el sector Chambacú.
+                                                        </p>
+                                                        <div class="spacer10"></div>
+                                                    </div>
+                                                    <div class="col-md-8 view-more-btn-responsive" *ngIf="unit.centroVacacionalId == 4">
+                                                        <ul>
+                                                            <li><span><b>Ubicaci&oacute;n:</b> 32 Km de Manizales
+																</span></li>
+                                                            <li><span><b>Temperatura promedio:</b> 26°C </span></li>
+                                                            <!-- <li><span><b>Alojamiento:</b> 52 Cabañas, 12 apartamentos
+																	sin cocineta, 24 en el sector Chambacú, Zona de
+																	Camping con capacidad para 30 carpas. </span></li> -->
+                                                            <li><span><b>Alojamiento:</b> 52 Cabañas, 12 apartamentos
+																	sin cocineta, 24 en el sector Chambacú. </span></li>
+                                                            <li><span><b>Tipo de acomodación:</b> Cabañas para 6, 8 y 10
+																	personas. Apartamentos para 4 y 5 personas </span>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <!-- /Centro recreacional la rochela -->
+
+                                                    <!-- Centro recreacional santagueda -->
+                                                    <div class="col-md-12" *ngIf="unit.centroVacacionalId == 3">
+                                                        <p>
+                                                            El Centro Recreacional Santágueda, en Palestina, estará dispuesto para recibir alojados y visitantes en un lugar cálido, acogedor, donde las piscinas, el tobogán y las zonas verdes invitan a descansar, compartir y alejarse de la rutina laboral para encontrarse
+                                                            con la familia y amigos.
+                                                        </p>
+                                                        <div class="spacer10"></div>
+                                                    </div>
+                                                    <div class="col-md-8 view-more-btn-responsive" *ngIf="unit.centroVacacionalId == 3">
+                                                        <ul>
+                                                            <li><span><b>Ubicaci&oacute;n:</b> 30 Km de Manizales
+																</span></li>
+                                                            <li><span><b>Temperatura promedio:</b> 27°C </span></li>
+                                                            <!-- <li><span><b>Alojamiento:</b> 29 cabañas. Zonas de camping
+																	con capacidad para 20 carpas.</span></li> -->
+                                                            <li><span><b>Alojamiento:</b> 29 cabañas.</span></li>
+                                                            <li><span><b>Tipo de acomodación:</b> Cabañas para 6, 10 y
+																	11 personas </span></li>
+                                                        </ul>
+                                                    </div>
+                                                    <!-- /Centro recreacional santagueda -->
+
+                                                    <!-- Centro recreacional el bosque -->
+                                                    <div class="col-md-12" *ngIf="unit.centroVacacionalId == 7">
+                                                        <p>
+                                                            El Centro Recreacional El Bosque en Pensilvania, un lugar encantador escondido entre el verde de las montañas, la paz del sonido del río y las aves espera que todos sus visitantes logren enamorarse de las actividades ecológicas, disfrutar de las actividades
+                                                            familiares y simplemente dedicarse a disfrutar de la naturaleza.
+                                                        </p>
+                                                        <div class="spacer10"></div>
+                                                    </div>
+                                                    <div class="col-md-8 view-more-btn-responsive" *ngIf="unit.centroVacacionalId == 7">
+                                                        <ul>
+                                                            <li><span><b>Ubicaci&oacute;n:</b> Municipio de Pensilvania
+																	Caldas </span></li>
+                                                            <li><span><b>Temperatura promedio:</b> 16°C </span></li>
+                                                            <li><span><b>Alojamiento:</b> 9 cabañas, construidas en pino
+																	y ladrillo farol, con chimenea, 8 apartamentos.
+																</span></li>
+                                                            <li><span><b>Tipo de acomodación:</b> Cabañas para 6 y 10
+																	personas. Apartamentos para 5 personas </span></li>
+                                                        </ul>
+                                                    </div>
+                                                    <!--/ Centro recreacional el bosque -->
+
+                                                    <div class="col-md-4">
+                                                        <ul>
+                                                            <li>
+                                                                <span><b>Lista de precios por
+																		categor&iacute;a:</b></span>
+                                                                <div class="border-left">
+                                                                    <ul>
+                                                                        <li *ngFor="let val of details.valores">
+                                                                            <span><b>Categor&iacute;a:</b>
+																				{{val.categoria}}:
+																				${{val.valor | number}}</span>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+
+                                                </tab>
+                                                <tab heading="Servicios" id="servicios">
+
+                                                    <!-- centro recreacional la rochela -->
+                                                    <div class="row view-more-btn-responsive" *ngIf="centroVacacionalId == 4">
+                                                        <div class="col-md-4 p-5">
+                                                            <div class="header-list">
+                                                                <img src="../../assets/images/icons/atractivos-recretivos.png" class="image-responsive servicio-img"> <span class="servicio">Atractivos recreativos</span>
+                                                            </div>
+                                                            <ul class="details-list">
+                                                                <li>Lago de pesca</li>
+                                                                <li>Lago de canoas</li>
+                                                                <li>Lago decorativo</li>
+                                                                <li>Piscinas para adultos niños</li>
+                                                                <li>Sauna</li>
+                                                                <li>Turco</li>
+                                                                <li>Sal&oacute;n de juegos</li>
+                                                                <li>Sala de spinning</li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="col-md-4 p-5">
+                                                            <div class="header-list">
+                                                                <img src="../../assets/images/icons/escenarios-deportivos.png" class="image-responsive  servicio-img">
+                                                                <span class="servicio">Escenarios deportivos</span>
+                                                            </div>
+                                                            <ul class="details-list">
+                                                                <li>Cancha de f&uacute;tbol en grama</li>
+                                                                <li>Cancha de baloncesto</li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="col-md-4 p-5">
+                                                            <div class="header-list">
+                                                                <img src="../../assets/images/icons/salas-conferencia.png" class="image-responsive  servicio-img">
+                                                                <span class="servicio">Salas de conferencias</span>
+                                                            </div>
+                                                            <ul class="details-list">
+                                                                <li>Sal&oacute;n con capacidad para 100 personas, con aire acondicionado</li>
+                                                                <li>Sal&oacute;n con capacidad para 40 personas</li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="col-md-4 p-5">
+                                                            <div class="header-list">
+                                                                <img src="../../assets/images/icons/supermercado.png" class="image-responsive  servicio-img">
+                                                                <span class="servicio">Supermercado</span>
+                                                            </div>
+                                                            <ul class="details-list">
+                                                                <li>Carnicer&iacute;a</li>
+                                                                <li>Droguer&iacute;a</li>
+                                                                <li>Grano en general</li>
+                                                                <li>Perecederos </li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="col-md-4 p-5">
+                                                            <div class="header-list">
+                                                                <img src="../../assets/images/icons/parquedero.png" class="image-responsive  servicio-img">
+                                                                <span class="servicio">Parqueadero</span>
+                                                            </div>
+                                                            <ul class="details-list">
+                                                                <li>Principal (300 vehículos, 150 motos)</li>
+                                                                <li>Adicional para 60 veh&iacute;culos</li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="col-md-4 p-5">
+                                                            <div class="header-list">
+                                                                <img src="../../assets/images/icons/restaurantes.png" class="image-responsive  servicio-img">
+                                                                <span class="servicio">&Aacute;reas sociales,
+																	restaurantes y cafeter&iacute;a</span>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                    <!--/ centro recreacional la rochela -->
+
+                                                    <!-- Centro recreacional santagueda -->
+                                                    <div class="row view-more-btn-responsive" *ngIf="centroVacacionalId == 3">
+                                                        <div class="col-md-4 p-5">
+                                                            <div class="header-list">
+                                                                <img src="../../assets/images/icons/atractivos-recretivos.png" class="image-responsive servicio-img"> <span class="servicio">Atractivos recreativos</span>
+                                                            </div>
+                                                            <ul class="details-list">
+                                                                <li>Piscinas para adultos</li>
+                                                                <li>Piscina semiol&iacute;mpica</li>
+                                                                <li>Piscina para niños</li>
+                                                                <li>Toboganes</li>
+                                                                <li>Sal&oacute;n de juegos</li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="col-md-4 p-5">
+                                                            <div class="header-list">
+                                                                <img src="../../assets/images/icons/escenarios-deportivos.png" class="image-responsive  servicio-img">
+                                                                <span class="servicio">Escenarios deportivos</span>
+                                                            </div>
+                                                            <ul class="details-list">
+                                                                <li>Cancha de f&uacute;tbol en grama</li>
+                                                                <li>Canchas de tejo</li>
+                                                                <li>Canchas para baloncesto voleibol y/o microf&uacute;tbol
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="col-md-4 p-5">
+                                                            <div class="header-list">
+                                                                <img src="../../assets/images/icons/salas-conferencia.png" class="image-responsive  servicio-img">
+                                                                <span class="servicio">Salas de conferencias</span>
+                                                            </div>
+                                                            <ul class="details-list">
+                                                                <li>Sal&oacute;n con capacidad para 100 personas, con aire acondicionado</li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="col-md-4 p-5">
+                                                            <div class="header-list">
+                                                                <img src="../../assets/images/icons/parquedero.png" class="image-responsive  servicio-img">
+                                                                <span class="servicio">Parqueadero</span>
+                                                            </div>
+                                                            <ul class="details-list">
+                                                                <li>Principal (110 vehículos, 60 motos)</li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="col-md-4 p-5">
+                                                            <div class="header-list">
+                                                                <img src="../../assets/images/icons/restaurantes.png" class="image-responsive  servicio-img">
+                                                                <span class="servicio">&Aacute;reas sociales,
+																	restaurantes y cafeter&iacute;a</span>
+                                                            </div>
+                                                            <ul class="details-list">
+                                                                <li>Minimercado</li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <!--/ centro recreacional santagueda -->
+
+                                                    <!-- centro recreacional el bosque -->
+                                                    <div class="row view-more-btn-responsive" *ngIf="centroVacacionalId == 7">
+                                                        <div class="col-md-4 p-5">
+                                                            <div class="header-list">
+                                                                <img src="../../assets/images/icons/atractivos-recretivos.png" class="image-responsive servicio-img"> <span class="servicio">Atractivos recreativos</span>
+                                                            </div>
+                                                            <ul class="details-list">
+                                                                <li>Lago de pesca</li>
+                                                                <li>Cabalgata ecol&oacute;gica</li>
+                                                                <li>Parque infantil</li>
+                                                                <li>Sendero ecol&oacute;gico</li>
+                                                                <li>Salón de interpretaci&oacute;n ambiental y sal&oacute;n de juegos</li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="col-md-4 p-5">
+                                                            <div class="header-list">
+                                                                <img src="../../assets/images/icons/escenarios-deportivos.png" class="image-responsive  servicio-img">
+                                                                <span class="servicio">Escenarios deportivos</span>
+                                                            </div>
+                                                            <ul class="details-list">
+                                                                <li>Canchas m&uacute;ltiples</li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="col-md-4 p-5">
+                                                            <div class="header-list">
+                                                                <img src="../../assets/images/icons/salas-conferencia.png" class="image-responsive  servicio-img">
+                                                                <span class="servicio">Salas de conferencias</span>
+                                                            </div>
+                                                            <ul class="details-list">
+                                                                <li>Dos salas de conferencias con capacidad para 50 personas
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="col-md-4 p-5">
+                                                            <div class="header-list">
+                                                                <img src="../../assets/images/icons/parquedero.png" class="image-responsive  servicio-img">
+                                                                <span class="servicio">Parqueadero</span>
+                                                            </div>
+                                                            <ul class="details-list">
+                                                                <li>Capacidad para 20 vehículos</li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="col-md-4 p-5">
+                                                            <div class="header-list">
+                                                                <img src="../../assets/images/icons/restaurantes.png" class="image-responsive  servicio-img">
+                                                                <span class="servicio">&Aacute;reas sociales,
+																	restaurantes y cafeter&iacute;a</span>
+                                                            </div>
+                                                            <ul class="details-list">
+                                                                <li>Minimercado</li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <!--/ centro recreacional el bosque -->
+
+                                                </tab>
+                                            </tabset>
+                                        </div>
+                                        <div class="col-md-12 text-right">
+                                            <a href="javascript:;" class="btn view-more-btn p-10" (click)="viewless(unit.centroVacacionalId, unit.unidadHabitacionalId, i)">Ver
+												menos&nbsp;<i class="fa fa-arrow-circle-up" aria-hidden="true"></i></a>
+                                        </div>
+                                    </div>
+                                </ng-container>
+
+                            </div>
+                            <!-- Detalle unidad habitacional -->
+                        </ng-container>
+                        <!-- Div to navigate with scroll -->
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+
+</div>
+
+<div id="recomendaciones" class="form-group recomendaciones-alojamiento">
+    <input type="checkbox" class="filter" [(ngModel)]="recomendacionesChecked" name="accept_habeas">
+    <span class="text-left">Para generar la reserva de alojamiento debes aceptar las recomendaciones.</span>
+</div>
+
+<div class="overlay" [class.open]="showOverlay">
+    <div class="img text-center">
+        <img src="../../assets/images/loading.png" alt="" style=" width: 15%;margin-top: 15%">
+    </div>
+    <div class="row">
+        <div class="col-md-12 text-center loading-message">
+            <h2 *ngIf="!showWelcome">{{ 'messages.loading' | translate }}</h2>
+            <h2 *ngIf="showWelcome">{{ welcome }}</h2>
+        </div>
+    </div>
+</div>
+
+<div class="banner-reserva">
+    <img style="width: 100%;" src="assets/images/Banner_Reserva_Covid_X2.jpg" class="img-fluid" alt="">
+</div>
+
+
+
+<div class="banner-reserva-mobile">
+    <img style="width: 100%;" src="assets/images/Banner_Reserva_Covid_Mobile.jpg" class="img-fluid" alt="">
+    <div class="banner-text">
+        <p><b>Al visitar de nuevo los Centros Recreacionales y disfrutar del alojamiento, ten en cuenta estas recomendaciones:</b>
+        </p>
+        <ul class="list-items-medidas">
+            <li> Tus acompañantes deberán ser de tu mismo grupo familiar, pues de esta forma aseguraremos el estado de salud del mismo.</li>
+            <li> Distanciamiento social.</li>
+            <li> Lávate las manos con frecuencia.</li>
+            <li> No saludar con besos o apretones de mano.</li>
+            <li> Si toses, cubrir la boca con el codo flexionado o con un pañuelo desechable.</li>
+            <li> Evita tocarte los ojos, la nariz y la boca.</li>
+            <li> Utiliza de manera adecuada y según el riesgo los elementos de protección personal.</li>
+            <li> Evita el contacto con otros huéspedes. Si vas a salir por alguna circunstancia de la habitación deberás usar el tapabocas.</li>
+            <li> Mantente hidratado y procura tener un sueño reparador.</li>
+            <li> Recuerda realizar constantemente desinfección de tus artículos personales como llaves, computador, celular, entre otros.</li>
+            <li> No está permitido llevar a cabo celebraciones en los alojamientos.</li>
+            <li> Evita visitar otros huéspedes o recibirlos en tu alojamiento.</li>
+            <li> Si presentas alguna sintomatología durante tu permanencia en el servicio, comunícate para una mayor orientación con la línea nacional 123 o desde el celular 192 e informa en la recepción.</li>
+        </ul>
+
+        <br/>
+    </div>
+</div>
+
+<!-- <div id="recomendaciones" class="form-group recomendaciones-alojamiento">
+    <input type="checkbox" class="filter" [(ngModel)]="recomendacionesChecked" name="accept_habeas">
+    <span class="text-left">Para generar la reserva de alojamiento debes aceptar las recomendaciones.</span>
+</div> -->
+
+<!-- Button trigger modal -->
+<button hidden type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-rochela-santagueda">
+  </button>
+
+<!-- Modal -->
+<div class="modal fade" id="modal-rochela-santagueda" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-rochela-santagueda" role="document">
+        <div class="modal-content">
+            <div class="modal-body p-0">
+                <img src="assets/images/Banner_Rochela_Santagueda_X2.jpg" class="img-fluid" alt="">
+                <button class="btn btn-primary filter btn-banner" data-dismiss="modal">Continuar</button>
+            </div>
+            <div class="modal-body-mobile p-0">
+                <img src="assets/images/Banner_Rochela_Santagueda_Mobile_X2.jpg" class="img-fluid" alt="">
+                <div class="banner-text">
+                    <p><b>
+                        Algunos de nuestros servicios complementarios al alojamiento tienen modificaciones en la prestación o estarán inhabilitados, te invitamos a leer esta información de interés, antes de continuar con la reserva:</b>
+                    </p>
+                    <ul class="list-items-medidas">
+                        <li> Tu equipaje lo recibiremos en la recepción de cada Centro Recreacional, se realizará su desinfección y lo llevará el botones a los alojamientos.</li>
+                        <li> La zona de camping y el gimnasio del edificio Las Palmas estarán inhabilitados.</li>
+                        <li> Las piscinas estarán habilitadas de acuerdo al aforo permitido.</li>
+                        <li> Atracciones como toboganes, barco pirata y canoas no se encuentran habilitados.</li>
+                        <li> No hay clases de entrenamiento físico impartidas por instructores.</li>
+                        <li> Las salas de videojuegos, los parques de recreación infantil, zona húmeda, sauna, turco y el servicio de masajes también se encontrarán inhabilitados.</li>
+                    </ul>
+
+                    <br/>
+                    <br/>
+                </div>
+                <button class="btn btn-primary filter btn-banner" data-dismiss="modal">Continuar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Button trigger modal -->
+<button hidden type="button" class="btn btn-primary modal-alert-reserve" data-toggle="modal" data-target="#modal-alert-recomendaciones">
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="modal-alert-recomendaciones" tabindex="-1" role="dialog" aria-labelledby="modal-alert-reserveTitle" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header d-flex align-items-center justify-content-center m-3">
+                <div class="">
+                    <img src="assets\images\error.png" alt="warning" width="70px" class="animate__animated animate__fadeIn animate__fast">
+                </div>
+            </div>
+            <div class="modal-body cuerpomodal">
+                <div class="textbody">
+                    <p>Para poder generar tu reserva de alojamiento debes aceptar las recomendaciones</p>
+                </div>
+                <div class="d-flex align-items-center justify-content-center pb-3 pt-1">
+                    <button type="button" class="btn buttonclosemodal" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,106 @@
+.item{
+	border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.status{
+	text-align: justify;
+}
+.overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: #000;
+	opacity: 0;
+	filter: alpha(opacity=0);
+	visibility: hidden;
+	transition: opacity 0.3s ease-in-out, visibility 0 linear 0.3s;
+	z-index: 1;
+
+	&.open {
+		opacity: 0.8;
+		filter: alpha(opacity=80);
+		visibility: visible;
+		transition: opacity 0.3s ease-in-out;
+	}
+}
+
+.button{
+	width: 100%;
+	border-radius: 50px;
+	& .cancel-btn{
+		background-color: #ff2742;
+		color: #fff;
+		width: 100%;
+	}
+}
+
+.cancel-btn{
+	//background-color: #ff2742;
+	color: #fff;
+	width: 100%;
+}
+
+.table thead{
+	background-color: #fff;
+	color: #e82776;
+}
+
+.card-img-top {
+	max-height: 300px;
+	display: block; 
+	width: 100%;
+}
+
+
+// Small devices (landscape phones, less than 768px)
+@media (max-width: 767.98px) { 
+	
+	input{
+		&.search{
+			width: 90%!important;
+			margin-top: 5px;
+			margin-bottom: 5px;
+		}
+	}
+	.search-btn{
+		width: 90%;
+	}
+
+	.assisant{
+		padding: 2%;
+	    background-color: #e6e6e6;
+	    border-radius: 50px;
+	    width: 100%;
+	    margin: 5px;
+	    & .assintant-member{
+	    	padding: 10px!important;
+			text-align: center;
+	    	& .add-button {
+				position: inherit;
+				right: 0;
+				display: block;
+				text-align: center;
+			}
+
+	    }
+	}
+
+	.assistInfo{
+		text-align: center;
+		& a{
+			float: none;
+    		display: block;
+		}
+	}
+}
+
+
+a{
+	color: #000!important;
+	text-decoration: none!important;
+	&:hover{
+		color:#e82776!important;
+	}
+}

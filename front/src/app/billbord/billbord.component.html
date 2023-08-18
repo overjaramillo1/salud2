@@ -1,0 +1,66 @@
+<div class="full-heigth">
+	<div class="col-md-12">
+		<div *ngIf="bilboardList.length > 0">
+			<!-- <div class="col-md-4 p-20" *ngFor="let movie of bilboardList">
+				<div class="card">
+					<img  src="{{movie.rutaImagen}}" alt="{{movie.titulo}}" class="img-responsive">
+					<div class="card-body">
+						<h2>{{movie.titulo}}</h2>
+						<span>{{movie.generos}}</span>
+						<span>Clasificación: {{movie.clasificacion}}</span>
+						<span>Pr&oacute;xima funci&oacute;n: {{movie.fechaMasCercana}}</span>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-12 p-20" *ngIf="bilboardList.length == 0">
+				<img src="../../assets/images/loading.png" alt="" style=" width: 15%;margin: 5% 45%;">
+				<h2>En este momento no tenemos eventos disponibles</h2>
+			</div> -->
+
+			<div
+				ng2-carouselamos
+				class="slides-wrapper"
+				[items]="itemsMovies"
+				[width]="1200"
+				[$prev]="prev"
+				[$next]="next"
+				[$item]="item"
+				>
+				</div>
+
+			   <ng-template #prev>
+			     <img src="../../assets/images/icons/izquierda_gris.png" id="left" />
+			   </ng-template>
+			   <ng-template #next>
+			     <img src="../../assets/images/icons/derecha_gris.png" id="right" />
+			   </ng-template>
+			   <ng-template #item let-item let-i="index">
+			       <div class="items">
+			         <!-- <img src="{{ item.name }}"> -->
+					<a href="https://app.confa.co:8886/cineConfa/"  target="_blank">
+				        <div class="card p-40 text-center">
+							<div class="image-slide">
+								<img  src="{{item.name}}" title="{{item.titulo}}" class="slide-image">
+							</div>
+							<!-- 						<div class="image-slide">
+								<img src="../../assets/images/defaultcine" alt="Eventos confa">
+							</div> -->
+							<div class="card-body text-center slide-image">
+								<h4>{{item.titulo}}</h4>
+								<span>{{item.generos}}</span> 
+								 <span>{{item.clasificacion}}</span>
+								<!-- <span>Pr&oacute;xima funci&oacute;n: {{item.fechaMasCercana}}</span>  -->
+							</div>
+						</div>
+					</a>
+			       </div>
+			   </ng-template>
+		</div>
+		<div class="container p-20 text-center" *ngIf="bilboardList.length == 0">
+			<div class="spacer40"></div>
+			<h3>No tenemos eventos disponibles en este momento</h3>
+			<div class="spacer40"></div>
+		</div>
+	</div>
+</div>
+

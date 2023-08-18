@@ -1,0 +1,70 @@
+<div class="row">
+	<div class="col">
+		<div class="soft-box p-5 bg-white">
+			<h1 class="title">{{ 'forms.profile' | translate }}</h1>
+		</div>
+	</div>
+</div>
+<div class="spacer20"></div>
+<div class="row">
+	<div class="col-md-4">
+		<div class="soft-box p-5 bg-white">
+			<input id="upload-image" type="file" (change)="fileChangeEvent($event)" hidden="true" />
+
+			<div>
+			  <image-cropper
+			    
+			      [imageChangedEvent]="imageChangedEvent"
+			      [maintainAspectRatio]="false"
+			      [aspectRatio]="4 / 3"
+			      [resizeToWidth]="400"
+			      format="jpg"
+			      (imageCropped)="imageCropped($event)"
+			      (imageLoaded)="imageLoaded()"
+			      (loadImageFailed)="loadImageFailed()"
+			      style="max-width: 100%"
+			      [style.display]="cropperReady ? null : 'none'"
+			  ></image-cropper>
+			</div>
+			<br>
+
+			<div *ngIf="'' != croppedImage" class="row">
+				<div class="col-md-6 offset-md-3">
+					<img [src]="croppedImage" class="img-thumbnail"/>
+				</div>
+			</div>
+
+
+			<img *ngIf="!imageChangedEvent" src="{{user.url_image}}" class="img-thumbnail">
+			<div class="spacer10"></div>
+			<button *ngIf="!imageChangedEvent" class="btn btn-primary btn-block" (click)="uploadImage()">{{ 'forms.upload_image' | translate }}</button>
+
+			<button *ngIf="imageChangedEvent" class="btn btn-primary btn-block" (click)="cancelUpload()">{{ 'buttons.cancel' | translate }}</button>
+		</div>
+	</div>
+	<div class="col-md-8">
+		<div class="soft-box p-10 bg-white">
+			<div class="form-group">
+				<label>{{ 'forms.name' | translate }}</label>
+				<input [(ngModel)]="user.name" name="name" type="text" class="form-control">
+			</div>
+			<div class="form-group">
+				<label>{{ 'forms.email' | translate }}</label>
+				<input [(ngModel)]="user.email" name="email" type="text" class="form-control">
+			</div>
+			<div class="form-group">
+				<label>{{ 'forms.password' | translate }}</label>
+				<input [(ngModel)]="user.password" type="text" class="form-control" name="password">
+			</div>
+			<div class="form-group">
+				<label>{{ 'forms.confirm_password' | translate }}</label>
+				<input [(ngModel)]="user.confirm_password" type="text" class="form-control" name="confirm_password">
+			</div>
+
+			<div class="spacer10"></div>
+			<div class="text-right">
+				<button class="btn btn-primary" (click)="saveProfile()">{{ 'buttons.save' | translate }}</button>
+			</div>
+		</div>
+	</div>
+</div>

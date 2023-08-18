@@ -1,0 +1,30 @@
+<!--begin:Template for modal confirm-->
+<ng-template #modalConfirm>
+  <div class="modal-header" id="_modalErrors">
+      <div class="text-center">
+          <div class="cf-modal-header d-flex align-items-center text-center">
+              <h2 class="blue-color">{{title}}</h2>
+          </div>    
+      </div>
+
+  </div>
+  <div class="modal-body">
+      <div class="cf-modal-body text-center ">
+        {{message}}  
+      </div>
+      <div class="cf-modal-footer" >
+           <!-- <div class="cf-modal-header d-flex align-items-center justify-content-center gray-color">
+                <h2 class="">{{'alerts.are_you_sure' | translate}}</h2>
+            </div> -->
+          <div class="">
+              <!--<button class="btn btn-primary cf-btn cf-btn-primary cf-btn-block" (click)="confirmData()">
+                  Aceptar</button>
+                <div class="spacer20"></div>-->
+
+              <button class="btn btn-primary cf-btn cf-btn-primary cf-btn-block" (click)="closeModal()">
+                  Cerrar</button>
+          </div>
+      </div>
+  </div>
+</ng-template>
+<!--end:Template for modal errors-->

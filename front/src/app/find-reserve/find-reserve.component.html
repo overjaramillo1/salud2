@@ -1,0 +1,391 @@
+<div class="page-wrapper">
+    <div id="body-content">
+        <div class="home-accommodation">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="search">
+                            <a href="javascript:;" routerLink="/alojamiento/list-reserves">
+                                <i class="fa fa-arrow-left" aria-hidden="true"></i>&nbsp; Atrás
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-9 text-right breadcrumbs ">
+                        <a href="javascript:;" routerLink="/alojamiento">
+                            <i class="fa fa-chevron-right" aria-hidden="true"></i> B&uacute;squeda avanzada
+                        </a>
+                        <a href="javascript:;" routerLink="/alojamiento/list-reserves">
+                            <i class="fa fa-chevron-right" aria-hidden="true"></i> Mis reservas
+                        </a>
+                        <a href="javascript:;" class="active">
+                            <i class="fa fa-chevron-right" aria-hidden="true"></i> Ver reserva
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <span class="titles">Titular</span><br>
+                <span class="userInfo">{{titular.nombre1}} {{titular.nombre2}} {{titular.apellido1}} {{titular.apellido2}}</span>
+            </div>
+            <div class="col-md-4">
+                <span class="titles">Documento</span><br>
+                <span class="userInfo">{{document}}</span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card image-border">
+                    <carousel *ngIf="resort == 4" [interval]="myInterval" [(activeSlide)]="activeSlideIndex">
+                        <slide *ngFor="let slide of slides">
+                            <img [src]="slide.imagen" alt="imagen slide" style="display: block; width: 100%;" class="image-border">
+                        </slide>
+                        <slide *ngIf="slides.length == 0">
+                            <img src="../../assets/images/roche-default-min.png" alt="" class="img-responsive" class="image-border">
+                        </slide>
+                    </carousel>
+
+                    <carousel *ngIf="resort == 3" [interval]="myInterval" [(activeSlide)]="activeSlideIndex">
+                        <slide *ngFor="let slide of slides; let index=index">
+                            <img [src]="slide.imagen" alt="imagen slide" style="display: block; width: 100%;" class="image-border">
+                        </slide>
+                        <slide *ngIf="slides.length == 0">
+                            <img src="../../assets/images/santagueda-default-min.png" alt="" class="img-responsive" class="image-border">
+                        </slide>
+                    </carousel>
+
+                    <carousel *ngIf="resort == 7" [interval]="myInterval" [(activeSlide)]="activeSlideIndex">
+                        <slide *ngFor="let slide of slides; let index=index">
+                            <img [src]="slide.imagen" alt="imagen slide" style="display: block; width: 100%;" class="image-border">
+                        </slide>
+                        <slide *ngIf="slides.length == 0">
+                            <img src="../../assets/images/bosque-default-min.png" alt="" class="img-responsive" class="image-border">
+                        </slide>
+                    </carousel>
+
+                    <div class="card-body">
+                        <span class="resort card-subtitle">Número de reserva: <b>{{idReserva}}</b></span><br>
+                        <span class="resort "><b>Centro Recreacional {{resort_name | titlecase}}</b></span><br>
+                        <span class="resort">Pago: {{payStatus}}</span><br>
+                        <span class="card-title">{{apartment_name}}</span><br>
+                        <span class="card-subtitle"> Capacidad de alojamiento: {{quantity}} personas.</span><br>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Fecha ingreso <br><span class="details">{{dateStart | date:'MMMM d, y' | titlecase }}</span> </li>
+                            <li class="list-group-item">Fecha salida <br><span class="details">{{dateFinish | date:'MMMM d, y' | titlecase }}</span> </li>
+                            <li class="list-group-item"> <span class="limit">Fecha l&iacute;mite de pago</span> <br><span class="details">{{dateLimit | date:'MMMM d, y' | titlecase }}</span> </li>
+                            <li class="list-group-item" *ngIf="reserStatus == 'OK'">
+                                <button class="btn btn-primary button cancel-btn" (click)="confirmDelete()">Anular reserva</button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="spacer20"></div>
+
+                <div class="card p-20" *ngIf="showPaymentInfo">
+                    <div class="card-body">
+                        <h5 class="card-title titles"> Informaci&oacute;n del pago </h5>
+                        <div class="">
+
+                            <ul class="list-group list-group-flush">
+                                <li class="item">Banco: <br><span class="details">{{ payment_bankname }}</span> </li>
+                                <li class="item">
+                                    Estado: <br>
+                                    <span class="details status">{{ payment_code }}</span>
+                                </li>
+                                <li class="item">
+                                    No Autorizaci&oacute;n/CUS: <br>
+                                    <span class="details">{{ payment_TrazabilityCode }}</span>
+                                </li>
+                                <li class="item">
+                                    Fecha y hora de la transacci&oacute;n: <br>
+                                    <span class="details">{{ payment_date_hour| date:'long' }}</span>
+                                </li>
+                                <li class="">
+                                    <span class="limit">Valor de la transacción:</span> <br>
+                                    <span class="details">{{ payment_currency }} {{ payment_value | number }}</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="spacer20"></div>
+            </div>
+
+            <div class="col-md-8">
+                <div class="p-10" *ngIf="reserStatus == 'OK'">
+                    Agregar asistente<br>
+                </div>
+                <form class="form-inline row" *ngIf="reserStatus == 'OK'">
+                    <div class="form-group col-md-12 p-10">
+                        <input type="text" class="form-control search" (keyup)="validateDocument()" id="search" name="search" [(ngModel)]="search" placeholder="Digita el documento" autocomplete="false" pattern="\d*" maxlength="15">
+                        <button class="btn btn-primary search-btn" (click)="searchAssintants()">{{ 'buttons.search' | translate }} <i class="fa fa-search" aria-hidden="true"></i></button>
+                    </div>
+                </form>
+
+                <div *ngIf="filterAssintants.length > 0" class="row p-20">
+                    <div class="col-md-12 p-10">
+                        {{filterAssintants.length}} Resultados
+                    </div>
+
+                    <div class="col-md-12">
+                        <form class="form-inline row assisant" *ngFor="let assistant of filterAssintants; let i = index">
+                            <div class="form-group col-md-12 assintant-member">
+                                <span>{{assistant.nombre1}} {{assistant.nombre2}} {{assistant.apellido1}}&nbsp;</span> <span class="titles">{{assistant.tipoDocumento}} {{assistant.documento}}</span>
+                                <div class="add-button">
+                                    <button class="btn btn-primary search-btn" (click)="addAssintant(i)">
+									<i class="fa fa-spinner fa-spin fa fa-fw" *ngIf="loader"></i>
+									<span class="sr-only"></span>
+									{{ 'buttons.add' | translate }} 
+								</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="row p-20" *ngIf="showFormNewAssistant">
+                    <div class="p-10">
+                        Formulario para registrar asistente<br>
+                    </div>
+
+                    <form class="form row">
+                        <div class="form-group col-md-6">
+                            <label>Tipo de documento</label>
+                            <select name="tipoDocumento" id="tipoDocumento" [(ngModel)]="newAssitant.tipoDocumento" class="form-control">
+							<option value="" selected >
+								* {{ "health.login.fields.document_type" | translate }}
+							</option>
+							<option *ngFor="let item of documentType" value="{{ item.id }}" >
+								{{ item.name }}
+							</option>
+						</select>
+                            <i class="fa fa-chevron-down"></i>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>N&uacute;mero de documento</label>
+                            <input type="text" class="form-control" id="search" name="search" [(ngModel)]="newAssitant.documento" placeholder="N&uacute;mero de documento" autocomplete="false" disabled>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label>Primer nombre</label>
+                            <input type="text" class="form-control" id="nombre1" (keyup)="validateInputs('name1')" name="nombre1" [(ngModel)]="newAssitant.nombre1" placeholder="Primer nombre" maxlength="20" autocomplete="false">
+                            <span *ngIf="alert_name1"><i class="fa fa-exclamation-circle" aria-hidden="true" ></i> &nbsp; {{alert_name1}}</span>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Segundo nombre</label>
+                            <input type="text" class="form-control" id="nombre2" (keyup)="validateInputs('name2')" name="nombre2" [(ngModel)]="newAssitant.nombre2" placeholder="Segundo nombre" maxlength="30" autocomplete="false">
+                            <span *ngIf="alert_name2"><i class="fa fa-exclamation-circle" aria-hidden="true" ></i> &nbsp; {{alert_name2}}</span>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label>Primer apellido</label>
+                            <input type="text" class="form-control" id="apellido1" (keyup)="validateInputs('lastname1')" name="apellido1" [(ngModel)]="newAssitant.apellido1" placeholder="Primer apellido" maxlength="20" autocomplete="false">
+                            <span *ngIf="alert_lastname1"><i class="fa fa-exclamation-circle" aria-hidden="true" ></i> &nbsp; {{alert_lastname1}}</span>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Segundo apellido</label>
+                            <input type="text" class="form-control" id="apellido2" (keyup)="validateInputs('lastname2')" name="apellido2" [(ngModel)]="newAssitant.apellido2" placeholder="Segundo Apellido" maxlength="30" autocomplete="false">
+                            <span *ngIf="alert_lastname2"><i class="fa fa-exclamation-circle" aria-hidden="true" ></i> &nbsp; {{alert_lastname2}}</span>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label>{{placeholderEntry}}</label>
+                            <my-date-picker class="filter" [(ngModel)]="dat1" [options]="dateOptionsInit" [placeholder]="placeholderEntry" (dateChanged)="dateChange($event, 1)" [ngModelOptions]="{standalone: true}"></my-date-picker>
+
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>G&eacute;nero</label>
+                            <select name="genero" id="genero" [(ngModel)]="newAssitant.genero" class="form-control">
+							<option value="">G&eacute;nero</option>
+							<option value="M">Masculino</option>
+							<option value="F">Femenino</option>
+						</select>
+                            <i class="fa fa-chevron-down"></i>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <button class="btn btn-primary mb-2 reserve" (click)="AgregarAssitente()">AGREGAR ASISTENTE</button>
+                        </div>
+                        <div class="form-group col-md-6" *ngIf="alertMessage != null">
+                            <i class="fa fa-exclamation-circle" aria-hidden="true"></i> &nbsp; {{alertMessage}}
+                        </div>
+
+                    </form>
+                </div>
+
+                <div class="spacer20"></div>
+                <div class="col-md-12">
+                    <h3>Lista de asistentes</h3>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Asistentes</th>
+                                    <th scope="col">No Identificaci&oacute;n</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">
+                                        <div class="assistInfo">{{principalName}}
+                                        </div>
+                                    </th>
+                                    <td>
+                                        {{type_document}}&nbsp;{{document}}
+                                    </td>
+
+                                </tr>
+                                <ng-container *ngIf="assitants.length > 0">
+                                    <tr *ngFor="let assintant of assitants; let i = index">
+                                        <th scope="row">
+                                            <div class="assistInfo">{{assintant.nombre1 | uppercase}} {{assintant.nombre2 | uppercase}} {{assintant.apellido1 | uppercase}}
+                                                <a href="javascript:;" (click)="deleteAssintant(assintant.documento)" title="Quitar asistente" data-toggle="tooltip" data-placement="top"><i class="fa fa-minus-circle" aria-hidden="true" *ngIf="reserStatus == 'OK'"></i></a>
+                                            </div>
+                                        </th>
+                                        <td>
+                                            {{assintant.tipoDocumento}}&nbsp;{{assintant.documento}}
+                                        </td>
+                                    </tr>
+                                    <ng-container *ngIf="values.detalle.length > 0">
+                                        <tr class="value" *ngFor="let value of values.detalle">
+                                            <th>
+                                                {{value.nombre}}
+                                            </th>
+                                            <td>
+                                                ${{value.total |number}}
+                                            </td>
+                                        </tr>
+                                    </ng-container>
+                                    <tr>
+                                        <th>
+                                            Total
+                                        </th>
+                                        <td>
+                                            ${{values.valorTotal | number}}
+                                        </td>
+                                    </tr>
+                                </ng-container>
+                            </tbody>
+                        </table>
+                        <!-- <div class="row buttons-section">
+						<div class="col-md-6 p-20">
+							<button class="btn btn-primary mb-2 pay" *ngIf="reserveId != null">pagar</button>
+						</div>
+					</div> -->
+                    </div>
+                </div>
+
+                <div class="spacer20"></div>
+                <div class="col-md-12">
+                    * Si tienes inquietudes relacionadas con tu reserva, por favor escríbenos al correo electrónico <a href="mailto:alojamiento@confa.co">alojamiento@confa.co</a>.
+                </div>
+
+                <div class="spacer20"></div>
+
+                <div class="col-md-12" *ngIf="paysmethods.length > 0">
+                    <h3>Formas de pago</h3>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Tipo</th>
+                                    <th scope="col">Detalle</th>
+                                    <th scope="col"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let method of paysmethods; let i = index">
+                                    <th scope="row" width="40%">
+                                        <div class="assistInfo">{{method.nombre}}
+                                        </div>
+                                    </th>
+                                    <td style="width: 50%;">
+
+                                        <div class="media row p-5" *ngFor="let media of method.medioPago" style="width: 95%;">
+                                            <div class="col-md-8 text-left">
+                                                <span *ngIf="media.codigo == 27"><b>{{media.nombre}}:</b></span>
+                                                <span *ngIf="media.codigo != 27">{{media.nombre}}:</span>
+                                            </div>
+                                            <div class="col-md-4 text-right">
+                                                ${{media.valor | number}}
+                                            </div>
+                                        </div>
+
+                                        <div class="row p-5" style="width: 95%;">
+                                            <div class="col-md-8 text-left">
+                                                Total:
+                                            </div>
+                                            <div class="col-md-4 text-right">
+                                                ${{method.valorTotal | number}}
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-lg btn-primary search-btn" (click)="openModal(method.formaPagoId)">Pagar </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="overlay" [class.open]="showOverlay">
+    <div class="img text-center">
+        <img src="../../assets/images/loading.png" alt="" style=" width: 15%;margin-top: 5%">
+    </div>
+    <div class="row">
+        <div class="col-md-12 text-center loading-message">
+            <h2>{{ 'messages.loading' | translate }}</h2>
+        </div>
+    </div>
+</div>
+
+<!-- <ng-template #details>
+	<div class="p-40">
+		<div class="modal-header">
+			<span class="modal-title text-center">Confirma tus datos para continuar con la reserva</span>
+			<button type="button" class="close pull-rigth" aria-label="Close" (click)="closeModal()">
+			  <span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+		<div class="modal-body text-center">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="form-group">
+						<input type="number" class="form-control filter" [(ngModel)]="titular.celular" name="cellphone" placeholder="Número celular">
+					</div>
+				</div>
+				<div class="col-md-12">
+					<div class="form-group">
+						<input type="email" class="form-control filter" [ngModel]="titular.correo" name="email" placeholder="Correo eléctronico" disabled>
+					</div>
+				</div>
+				<div class="col-md-12">
+					<div class="form-group">
+						<input type="text" class="form-control filter" [(ngModel)]="titular.direccion" name="address" placeholder="Dirección">
+					</div>
+				</div>
+				
+				<div class="col">
+					<button href="javascript:;" class="btn btn-primary login-button filter" (click)="validateInfo()" >Continuar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+</ng-template> -->

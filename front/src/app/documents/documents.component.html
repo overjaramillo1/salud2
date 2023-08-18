@@ -1,0 +1,110 @@
+<div class="row">
+	<div class="col">
+		<div class="soft-box p-5 bg-white">
+			<h1 class="title">{{ 'forms.documents' | translate }}</h1>
+		</div>
+	</div>
+</div>
+<div class="spacer20"></div>
+<div class="row">
+	<div class="col text-right">
+		<button class="btn btn-primary" (click)="openCanvas()">{{ 'buttons.new_document' | translate }}</button>
+	</div>
+</div>
+<div class="spacer10"></div>
+<div class="row d-flex align-items-center">
+	<div class="col-md-1">
+		<select [(ngModel)]="pagesNumber" name="pagesNumber" class="form-control" (change)="getDocuments('')">
+			<option value="10">10</option>
+			<option value="20">20</option>
+			<option value="50">50</option>
+			<option value="100">100</option>
+		</select>
+	</div>
+	<div class="col-md-4">
+		{{ 'forms.rows' | translate }}
+	</div>
+	<div class="col-md-3 offset-md-4">
+		<div class="input-group">
+        	<div class="input-group-prepend">
+          		<div class="input-group-text"><i class="fa fa-search"></i></div>
+        	</div>	
+        	<input [(ngModel)]="search" name="search" type="text" class="form-control" (keyup)="getDocuments('')">
+      	</div>
+	</div>
+</div>
+<div class="spacer10"></div>
+<div class="row">
+	<div class="col">
+		<div class="soft-box p-5 bg-white table-responsive">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>{{ 'forms.title' | translate }}</th>
+						<th>{{ 'forms.original_name' | translate }}</th>
+						<th>{{ 'forms.url_file' | translate }}</th>
+						<th>&nbsp;&nbsp;&nbsp;</th>
+					</tr>
+				</thead>
+				<tbody *ngIf="documents.length > 0">
+					<tr *ngFor="let document of documents">
+						<td>{{document.id}}</td>
+						<td>{{document.title}}</td>
+						<td>{{document.original_name}}</td>
+						<td>{{document.url_file}}</td>
+						<td class="text-center">
+							<a href="javascript:;" (click)="editDocument(document.id)" class="btn-icon btn-edit p-5">
+								<i class="fa fa-edit"></i>
+							</a>
+							<a href="javascript:;" (click)="confirmDelete(document.id)" class="btn-icon btn-delete p-5">
+								<i class="fa fa-trash"></i>
+							</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+<div class="spacer20"></div>
+<div class="row">
+	<div class="col d-flex justify-content-center">
+		<ul class="pagination">
+		    <li *ngFor="let page of pages" class="page-item {{page[2]}}">
+		      	<a class="page-link" href="javascript:;" (click)="getPage(page[1])" [innerHTML]="page[0]"></a>
+		    </li>
+		</ul>
+	</div>
+</div>
+
+<div class="canvas right" [class.open]="canvasDocument">
+	<div class="canvas-header p-10-20">
+		<h3>{{ 'forms.user_form' | translate }}</h3>
+	</div>
+	<form class="p-20">
+	  	<div class="form-group">
+	    	<label>{{ 'forms.name' | translate }}</label>
+	    	<input [(ngModel)]="document.title" name="title" type="text" class="form-control" placeholder="{{ 'forms.title' | translate }}">
+	  	</div>
+	  	<div class="form-group">
+	  		<div class="btn-elegant" *ngIf="document.url_file != ''">
+	  			<a href="{{document.url_file}}" target="_blank" >{{ 'buttons.download_file' | translate }}</a>
+	  			<i class="fa fa-download"></i>
+	  		</div>
+	  		
+	  		<dropzone
+				#drpzone
+				[config]="config"
+				[message]="translate.instant('forms.click_drag')"
+				(sending)="onSending($event)"
+				(error)="onUploadError($event)"
+				(success)="onUploadSuccess($event)"></dropzone>
+	  	</div>
+	  	<button id="upload" type="submit" class="btn btn-primary" (click)="sendForm()">{{ 'buttons.save' | translate }}</button>
+	</form>
+</div>
+
+<div class="blur-overlay" [class.open]="showOverlay" (click)="closeCanvas()">
+	
+</div>

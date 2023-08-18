@@ -1,0 +1,289 @@
+    .user {
+        padding: 10px;
+        font-weight: 600;
+        color: #e82776;
+    }
+    
+    .price {
+        display: inline-block;
+    }
+    
+    .price::first-letter {
+        padding-right: 0px;
+    }
+    
+    .calendar {
+        padding: 5%;
+        margin: 5px 10px 5px 10px;
+        background-color: #bdbdbd;
+    }
+    
+    .hidden {
+        display: none;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.9s, overflow 0s;
+    }
+    
+    .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #000;
+        opacity: 0;
+        filter: alpha(opacity=0);
+        visibility: hidden;
+        transition: opacity 0.3s ease-in-out, visibility 0 linear 0.3s;
+        z-index: 20;
+        &.open {
+            opacity: 0.8;
+            filter: alpha(opacity=80);
+            visibility: visible;
+            transition: opacity 0.3s ease-in-out;
+        }
+    }
+    
+    .bg-loading {
+        background: url('../../assets/images/loading.gif')center;
+    }
+    
+    .multiselect-dropdown {
+        background-color: #fff!important;
+    }
+    
+    .resort-heading {
+        background-color: #e82776;
+        border-radius: 10px;
+        color: #fff;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: top center;
+        z-index: 8;
+        width: 100%;
+    }
+    
+    .rochela {
+        background-image: url('../../assets/images/rochela.png');
+    }
+    
+    .santagueda {
+        background-image: url('../../assets/images/santagueda.png');
+    }
+    
+    .bosque {
+        background-image: url('../../assets/images/bosque.png');
+    }
+    
+    .heading {
+        background: #e82776;
+        z-index: 10;
+        position: absolute;
+        width: 82%;
+        opacity: 0.5;
+        height: 400px;
+    }
+    
+    .card-group {
+        background-color: #fff;
+        border-radius: 10px;
+        padding: 10px;
+        margin-bottom: 20px;
+        & .unit-subtitle {
+            font-size: 18px;
+        }
+        & .unit-title {
+            font-size: 20px;
+            font-weight: bold;
+        }
+        & .unit-capacity {
+            font-size: 15px;
+            color: #e82776;
+        }
+        /*  & .costs{
+   	font-size: 12px;
+   } */
+        & .buttons {
+            margin: 10px;
+        }
+        & .important {
+            color: #e82776;
+            font-weight: bold;
+        }
+    }
+    
+    .contenido {
+        padding-top: 20px;
+    }
+    
+    .servicio {
+        padding-left: 5px;
+        font-weight: bold;
+        font-size: 18px;
+        text-align: center;
+    }
+    
+    .border-left {
+        border-left: solid 2px #e82776!important;
+        padding-left: 5px;
+    }
+    
+    .header-list {
+        display: flex;
+        align-items: center;
+    }
+    
+    .servicio-img {
+        width: 55px;
+    }
+    
+    .details-list {
+        margin-left: 30%;
+        list-style: initial;
+    }
+    
+    .Login-Button {
+        color: #333!important;
+    }
+    
+    .effect {
+        /* here comes the compromise, set a max-height that would for your usual contents*/
+        max-height: fit-content;
+        overflow: auto;
+        transition: max-height 0.5s, overflow 0.5s 0.5s;
+    }
+    
+    a {
+        color: #000;
+        text-decoration: none;
+        &:hover {
+            color: #e82776;
+        }
+    }
+    
+    .information {
+        display: flex;
+        align-content: center;
+        justify-content: center;
+        min-height: 200px;
+    }
+    
+    .btn-banner {
+        position: absolute;
+        top: 94%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #f2f2f2;
+        color: #e82776;
+        width: 40%;
+    }
+    
+    button.btn.buttonclosemodal {
+        background-color: #fff;
+        border: 1px rgb(4, 174, 239) solid;
+        border-radius: 25px;
+        font-size: 16px;
+        width: 50%;
+        color: rgb(4, 174, 239);
+    }
+    
+    button.btn.buttonclosemodal:hover {
+        background-color: rgb(4, 174, 239);
+        border: 1px #fff solid;
+        color: #fff;
+    }
+    
+    div.cuerpomodal {
+        background-color: rgb(4, 174, 239) !important;
+        border-radius: 0 0 0.3rem 0.3rem;
+    }
+    
+    div.cuerpomodal div.textbody p {
+        margin: 20px 35px;
+        align-items: center;
+        text-align: center;
+        font-size: 20px !important;
+        color: #fff;
+    }
+    
+    button.modal-alert-reserve {
+        display: none;
+    }
+    
+    div.recomendaciones-alojamiento {
+        display: flex;
+        justify-content: center;
+        margin: 50px 0;
+        padding: 0 50px;
+        input {
+            transform: scale(1.5);
+            height: 25px;
+            vertical-align: middle;
+            margin-right: 15px;
+        }
+        span {
+            font-size: 20px;
+        }
+    }
+    
+    div.modal-rochela-santagueda {
+        max-width: 870px;
+    }
+    
+    div.banner-reserva-mobile {
+        display: none;
+    }
+    
+    div.banner-text {
+        padding: 35px;
+        background-color: #e82776;
+        color: white;
+        line-height: 1.5;
+    }
+    
+    .modal-body-mobile {
+        display: none;
+    }
+    
+    .banner-medidas-mobile {
+        display: none;
+    }
+    
+    @media (min-width: 768px) {
+        .resort-heading {
+            display: flex;
+        }
+    }
+    
+    @media (max-width: 380px) {
+        .banner-reserva-mobile {
+            display: block !important;
+        }
+        .banner-reserva {
+            display: none;
+        }
+        .recomendaciones-alojamiento {
+            padding: 0 20px;
+        }
+        .modal-rochela-santagueda {
+            .modal-body {
+                display: none;
+            }
+            .modal-body-mobile {
+                display: block !important;
+            }
+        }
+        .btn-banner {
+            width: 80% !important;
+        }
+        .banner-medidas {
+            display: none;
+        }
+        .banner-medidas-mobile {
+            display: block !important;
+        }
+        .list-items-medidas {
+            list-style-type: initial;
+        }
+    }

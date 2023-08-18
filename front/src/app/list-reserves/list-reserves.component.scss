@@ -1,0 +1,118 @@
+.details {
+    & .first {
+        background-color: #fff;
+        border-right: solid 5px #e6e6e6;
+    }
+    & .second {
+        background-color: #fff;
+        border-right: solid 5px #e6e6e6;
+    }
+    & .third {
+        background-color: #fff;
+    }
+    & .quarter {
+        border-top: solid 5px #e6e6e6;
+        background-color: #fff;
+        display: flex;
+        vertical-align: middle;
+        align-items: center;
+        & .button {
+            right: 10px;
+            position: absolute;
+        }
+    }
+}
+
+button.modal-checkin {
+    display: none;
+}
+
+h4.textTitle {
+    display: block;
+    margin: auto;
+    text-align: center;
+}
+
+button.btn.buttonclosemodal {
+    background-color: #fff;
+    border: 1px rgb(4, 174, 239) solid;
+    border-radius: 25px;
+    font-size: 16px;
+    width: 50%;
+    color: rgb(4, 174, 239);
+}
+
+button.btn.buttonclosemodal:hover {
+    background-color: rgb(4, 174, 239);
+    border: 1px #fff solid;
+    color: #fff;
+}
+
+div.cuerpomodal {
+    background-color: rgb(4, 174, 239) !important;
+    border-radius: 0 0 0.3rem 0.3rem;
+}
+
+div.cuerpomodal div.textbody p {
+    margin: 20px 35px;
+    align-items: center;
+    text-align: center;
+    font-size: 20px !important;
+    color: #fff;
+}
+
+button.modal-alert-reserve {
+    display: none;
+}
+
+.btn-primary.disabled,
+.btn-primary:disabled {
+    background-color: white;
+    border-color: #666666;
+    color: #666666;
+    cursor: auto;
+}
+
+// Small devices (landscape phones, less than 768px)
+@media (max-width: 767.98px) {
+    .details {
+        & .quarter {
+            border-top: solid 5px #e6e6e6;
+            background-color: #fff;
+            display: flex;
+            vertical-align: middle;
+            align-items: center;
+            & .button {
+                right: 10px;
+                position: static;
+            }
+        }
+    }
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out, visibility 0 linear 0.3s;
+    z-index: 20;
+    &.open {
+        opacity: 0.8;
+        filter: alpha(opacity=80);
+        visibility: visible;
+        transition: opacity 0.3s ease-in-out;
+    }
+}
+
+.botondesabilitado {
+    background-color: white;
+    border-color: #666666;
+    color: #666666;
+    cursor: auto;
+}

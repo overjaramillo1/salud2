@@ -1,0 +1,137 @@
+section.contenedorformulario {
+    background-color: rgb(242, 242, 242);
+}
+
+div.tituloform {
+    color: rgb(255, 43, 129);
+    font-size: 34px;
+    font-weight: bold;
+    line-height: 1;
+}
+
+button.nombre-persona,
+div.sub-title {
+    color: rgb(255, 43, 129);
+    font-size: 22px;
+    font-weight: bold;
+    line-height: 1;
+}
+
+button.nombre-persona {
+    font-size: 25px !important;
+}
+
+div.sub-title {
+    margin: 0;
+}
+
+div.card {
+    margin-bottom: 8px;
+    background-color: transparent;
+    border: transparent;
+}
+
+.collapse-body,
+.card-body {
+    background-color: #f2f2f2;
+}
+
+.card-body {
+    padding: 0;
+}
+
+.sintomas {
+    padding: 1rem;
+}
+
+div.card-header {
+    background-color: white;
+    position: relative;
+}
+
+i.fas {
+    position: absolute;
+    left: -21px;
+    color: rgb(255, 43, 129);
+    font-size: 28px;
+    font-weight: bold;
+    line-height: 1.5;
+}
+
+i.fa-chevron-down {
+    left: -28px !important;
+}
+
+div.row-white {
+    background-color: white;
+    margin-bottom: 4px;
+    label {
+        font-size: 18px;
+    }
+}
+
+.btn-primary.disabled,
+.btn-primary:disabled {
+    background-color: white;
+    border-color: #666666;
+    color: #666666;
+    cursor: auto;
+}
+
+button.btn-primary {
+    margin: 29px 0 48px;
+    font-size: 18px;
+}
+
+.botondesabilitado {
+    background-color: white;
+    border-color: #666666;
+    color: #666666;
+    cursor: auto;
+}
+
+.temperatura {
+    width: 150px;
+}
+
+button.modal-checkin {
+    display: none;
+}
+
+h4.textTitle {
+    display: block;
+    margin: auto;
+    text-align: center;
+}
+
+button.btn.buttonclosemodal {
+    background-color: #fff;
+    border: 1px rgb(4, 174, 239) solid;
+    border-radius: 25px;
+    font-size: 16px;
+    width: 50%;
+    color: rgb(4, 174, 239);
+}
+
+button.btn.buttonclosemodal:hover {
+    background-color: rgb(4, 174, 239);
+    border: 1px #fff solid;
+    color: #fff;
+}
+
+div.cuerpomodal {
+    background-color: rgb(4, 174, 239) !important;
+    border-radius: 0 0 0.3rem 0.3rem;
+}
+
+div.cuerpomodal div.textbody p {
+    margin: 20px 35px;
+    align-items: center;
+    text-align: center;
+    font-size: 20px !important;
+    color: #fff;
+}
+
+button.modal-alert-reserve {
+    display: none;
+}

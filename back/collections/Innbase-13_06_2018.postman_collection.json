@@ -1,0 +1,915 @@
+{
+	"id": "ffbcf92e-d08d-4149-aa51-e0c542be5058",
+	"name": "Innbase",
+	"description": "",
+	"auth": null,
+	"events": null,
+	"variables": [],
+	"order": [],
+	"folders_order": [
+		"fb3e766c-08e3-4de9-9cc2-0b22849d32cb",
+		"3843923a-5cd8-4fc7-9252-b285555d755c",
+		"42e31d85-46d4-4c26-896b-f35769270275",
+		"b1be90ac-794d-4760-8823-ed3749dda65e",
+		"a90fc969-7ea4-4f80-bab4-0d62aae0c861"
+	],
+	"folders": [
+		{
+			"id": "fb3e766c-08e3-4de9-9cc2-0b22849d32cb",
+			"name": "Autenticación",
+			"description": "",
+			"auth": null,
+			"events": null,
+			"collection": "ffbcf92e-d08d-4149-aa51-e0c542be5058",
+			"folder": null,
+			"order": [
+				"f0e60f4a-a699-4e96-a79b-442036e676d5",
+				"ac707a98-cdac-4c22-a1fb-58370080af7e",
+				"f4dc08ee-bc1c-4d9f-8e95-8165bde29df6",
+				"e21d7635-ed18-4244-9990-3b9eaf3d3df6",
+				"96d77124-4b7e-4217-83e1-ccf2dd6eb6dd"
+			],
+			"folders_order": []
+		},
+		{
+			"id": "a90fc969-7ea4-4f80-bab4-0d62aae0c861",
+			"name": "Documentos",
+			"description": "",
+			"auth": null,
+			"events": null,
+			"collection": "ffbcf92e-d08d-4149-aa51-e0c542be5058",
+			"folder": null,
+			"order": [
+				"fe1668df-2a89-428b-a4e4-0989541608fe",
+				"3b17d836-ff5a-47b7-acd9-68a983832a36",
+				"606e2ddc-642b-4c20-a168-52e17671158a"
+			],
+			"folders_order": []
+		},
+		{
+			"id": "b1be90ac-794d-4760-8823-ed3749dda65e",
+			"name": "Perfíl de usuario",
+			"description": "",
+			"auth": null,
+			"events": null,
+			"collection": "ffbcf92e-d08d-4149-aa51-e0c542be5058",
+			"folder": null,
+			"order": [
+				"1dc4a14c-c8e5-49e1-b320-4a7e9a61c877"
+			],
+			"folders_order": []
+		},
+		{
+			"id": "3843923a-5cd8-4fc7-9252-b285555d755c",
+			"name": "Roles y permisos",
+			"description": "",
+			"auth": null,
+			"events": null,
+			"collection": "ffbcf92e-d08d-4149-aa51-e0c542be5058",
+			"folder": null,
+			"order": [
+				"409937bb-5226-421b-82c4-1bddedcf6ae1",
+				"b707b4dc-f022-4278-b7df-93823eb720fe",
+				"4d71695f-7fe1-4d9d-acf2-d72bb9769cf0",
+				"21de44aa-a540-477a-af96-1df0a30e7654",
+				"231093f7-a70a-4122-aa6f-3ab8c06751c6",
+				"af0456f5-37e8-4374-b136-ce930fb6a51b",
+				"f3348b34-e823-46fa-9470-330c4ca9ea67",
+				"af2781d4-785c-419f-bdab-71bbeab2f68f",
+				"5688aa5b-0297-47f6-ba6a-30072e2b1202",
+				"fec4599f-91f2-43c8-bf26-4b2263a2237b"
+			],
+			"folders_order": []
+		},
+		{
+			"id": "42e31d85-46d4-4c26-896b-f35769270275",
+			"name": "Usuarios",
+			"description": "",
+			"auth": null,
+			"events": null,
+			"collection": "ffbcf92e-d08d-4149-aa51-e0c542be5058",
+			"folder": null,
+			"order": [
+				"12bc71bd-9bb8-43bb-acb3-8467e0f53fe0",
+				"8967fb64-3798-4514-a0ce-56cb57a6f1e2",
+				"07103175-3484-43f9-9527-52b4d2e273d8",
+				"38c94f61-4a0c-4ec7-8dae-b8bd6048f05f"
+			],
+			"folders_order": []
+		}
+	],
+	"requests": [
+		{
+			"id": "07103175-3484-43f9-9527-52b4d2e273d8",
+			"name": "Obtener usuario por id",
+			"url": "http://innbase.local/api/v1/users/1",
+			"description": "",
+			"data": null,
+			"dataMode": "params",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9pbm5iYXNlLmxvY2FsXC9hcGlcL3YxXC9sb2dpbiIsImlhdCI6MTUyODIxMDI2MCwiZXhwIjoxNTI5NTA2MjYwLCJuYmYiOjE1MjgyMTAyNjAsImp0aSI6Ikx4VmtlZm4wa1E0eHZHS0EiLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.a4gJ25Wew_jYWArccLcok-PnfdK_Y4HrG9tfSFvhfCs",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "42e31d85-46d4-4c26-896b-f35769270275",
+			"headers": "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9pbm5iYXNlLmxvY2FsXC9hcGlcL3YxXC9sb2dpbiIsImlhdCI6MTUyODIxMDI2MCwiZXhwIjoxNTI5NTA2MjYwLCJuYmYiOjE1MjgyMTAyNjAsImp0aSI6Ikx4VmtlZm4wa1E0eHZHS0EiLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.a4gJ25Wew_jYWArccLcok-PnfdK_Y4HrG9tfSFvhfCs\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "12bc71bd-9bb8-43bb-acb3-8467e0f53fe0",
+			"name": "Lista de usuarios",
+			"url": "http://innbase.local/api/v1/users?rows=10&search",
+			"description": "",
+			"data": null,
+			"dataMode": "params",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9pbm5iYXNlLmxvY2FsXC9hcGlcL3YxXC9sb2dpbiIsImlhdCI6MTUyNzg2ODM0MywiZXhwIjoxNTI3ODcxOTQzLCJuYmYiOjE1Mjc4NjgzNDMsImp0aSI6Im5JY1hsTFJnNjJrVllUYWkiLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.vw-lVQrN5tnjnBfevghGcOd7mmSa8dZjmkPGV1VoKmI",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [
+				{
+					"key": "rows",
+					"value": "10",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "search",
+					"value": "",
+					"equals": false,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"auth": null,
+			"events": [],
+			"folder": "42e31d85-46d4-4c26-896b-f35769270275",
+			"headers": "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9pbm5iYXNlLmxvY2FsXC9hcGlcL3YxXC9sb2dpbiIsImlhdCI6MTUyNzg2ODM0MywiZXhwIjoxNTI3ODcxOTQzLCJuYmYiOjE1Mjc4NjgzNDMsImp0aSI6Im5JY1hsTFJnNjJrVllUYWkiLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.vw-lVQrN5tnjnBfevghGcOd7mmSa8dZjmkPGV1VoKmI\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "1dc4a14c-c8e5-49e1-b320-4a7e9a61c877",
+			"name": "Servicio que actualiza el perfíl del usuario",
+			"url": "http://innbase.local/api/v1/update-profile",
+			"description": "Si el campo password está vacio, el servicio deja la contraseña anterior. Este campo no es obligatorio.\n\nSi los campos name, email están vacios, el sistema mantiene los valores anteriores",
+			"data": [
+				{
+					"key": "name",
+					"value": "Catalina Grajales",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "email",
+					"value": "catagrajales.13@gmail.com",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "confirm_password",
+					"value": "",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "image",
+					"value": "",
+					"description": "",
+					"type": "file",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9pbm5iYXNlLmxvY2FsXC9hcGlcL3YxXC9sb2dpbiIsImlhdCI6MTUyODI5OTM2NiwiZXhwIjoxNTI5NTk1MzY2LCJuYmYiOjE1MjgyOTkzNjYsImp0aSI6InBTaXdMQlhhM3M0R0xJN3IiLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.4Of18CTrUl-0vRxywYY8W8T309z4EeE91j7QyUDnXvc",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"method": "POST",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "b1be90ac-794d-4760-8823-ed3749dda65e",
+			"headers": "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9pbm5iYXNlLmxvY2FsXC9hcGlcL3YxXC9sb2dpbiIsImlhdCI6MTUyODI5OTM2NiwiZXhwIjoxNTI5NTk1MzY2LCJuYmYiOjE1MjgyOTkzNjYsImp0aSI6InBTaXdMQlhhM3M0R0xJN3IiLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.4Of18CTrUl-0vRxywYY8W8T309z4EeE91j7QyUDnXvc\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "21de44aa-a540-477a-af96-1df0a30e7654",
+			"name": "Servicio que lista los permisos",
+			"url": "http://innbase.local/api/v1/permissions/1",
+			"description": "",
+			"data": null,
+			"dataMode": "params",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9pbm5iYXNlLmxvY2FsXC9hcGlcL3YxXC9sb2dpbiIsImlhdCI6MTUyNzcxNjIxNCwiZXhwIjoxNTI3NzE5ODE0LCJuYmYiOjE1Mjc3MTYyMTQsImp0aSI6Ijk1MVZvR3ZlZ3N6RlVoMGciLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.z_ZycjMRjssAqQYPZt7iD1qtAs9W44n64R-SqByUszM",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "3843923a-5cd8-4fc7-9252-b285555d755c",
+			"headers": "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9pbm5iYXNlLmxvY2FsXC9hcGlcL3YxXC9sb2dpbiIsImlhdCI6MTUyNzcxNjIxNCwiZXhwIjoxNTI3NzE5ODE0LCJuYmYiOjE1Mjc3MTYyMTQsImp0aSI6Ijk1MVZvR3ZlZ3N6RlVoMGciLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.z_ZycjMRjssAqQYPZt7iD1qtAs9W44n64R-SqByUszM\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "231093f7-a70a-4122-aa6f-3ab8c06751c6",
+			"name": "Servicio para asignar un permiso a un rol",
+			"url": "http://innbase.local/api/v1/permission-to-role",
+			"description": "",
+			"data": [
+				{
+					"key": "role_id",
+					"value": "1",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "permission_id",
+					"value": "1",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9pbm5iYXNlLmxvY2FsXC9hcGlcL3YxXC9sb2dpbiIsImlhdCI6MTUyNzE3NjcwNSwiZXhwIjoxNTI3MTgwMzA1LCJuYmYiOjE1MjcxNzY3MDUsImp0aSI6ImpkSXNhNFFUVzhvNXltQTgiLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.y-pPCTq2aG-IACyO_5TqSIGNs_NKXgr-GrAfrEYvysk",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"method": "POST",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "3843923a-5cd8-4fc7-9252-b285555d755c",
+			"headers": "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9pbm5iYXNlLmxvY2FsXC9hcGlcL3YxXC9sb2dpbiIsImlhdCI6MTUyNzE3NjcwNSwiZXhwIjoxNTI3MTgwMzA1LCJuYmYiOjE1MjcxNzY3MDUsImp0aSI6ImpkSXNhNFFUVzhvNXltQTgiLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.y-pPCTq2aG-IACyO_5TqSIGNs_NKXgr-GrAfrEYvysk\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "38c94f61-4a0c-4ec7-8dae-b8bd6048f05f",
+			"name": "Servicio que elimina un usuario",
+			"url": "http://innbase.local/api/v1/users/6",
+			"description": "",
+			"data": null,
+			"dataMode": "params",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9pbm5iYXNlLmxvY2FsXC9hcGlcL3YxXC9sb2dpbiIsImlhdCI6MTUyODI5OTM2NiwiZXhwIjoxNTI5NTk1MzY2LCJuYmYiOjE1MjgyOTkzNjYsImp0aSI6InBTaXdMQlhhM3M0R0xJN3IiLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.4Of18CTrUl-0vRxywYY8W8T309z4EeE91j7QyUDnXvc",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"method": "DELETE",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "42e31d85-46d4-4c26-896b-f35769270275",
+			"headers": "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9pbm5iYXNlLmxvY2FsXC9hcGlcL3YxXC9sb2dpbiIsImlhdCI6MTUyODI5OTM2NiwiZXhwIjoxNTI5NTk1MzY2LCJuYmYiOjE1MjgyOTkzNjYsImp0aSI6InBTaXdMQlhhM3M0R0xJN3IiLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.4Of18CTrUl-0vRxywYY8W8T309z4EeE91j7QyUDnXvc\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "3b17d836-ff5a-47b7-acd9-68a983832a36",
+			"name": "Servicio para crear o actualizar un documento",
+			"url": "http://innbase.local/api/v1/documents",
+			"description": "id: 0 -> Si es un documento nuevo\nid: x -> Se envía el id del documento a editar",
+			"data": [
+				{
+					"key": "id",
+					"value": "0",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "title",
+					"value": "Nuevo documento",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "file",
+					"value": "",
+					"description": "",
+					"type": "file",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9pbm5iYXNlLmxvY2FsXC9hcGlcL3YxXC9sb2dpbiIsImlhdCI6MTUyODI5OTM2NiwiZXhwIjoxNTI5NTk1MzY2LCJuYmYiOjE1MjgyOTkzNjYsImp0aSI6InBTaXdMQlhhM3M0R0xJN3IiLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.4Of18CTrUl-0vRxywYY8W8T309z4EeE91j7QyUDnXvc",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"method": "POST",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "a90fc969-7ea4-4f80-bab4-0d62aae0c861",
+			"headers": "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9pbm5iYXNlLmxvY2FsXC9hcGlcL3YxXC9sb2dpbiIsImlhdCI6MTUyODI5OTM2NiwiZXhwIjoxNTI5NTk1MzY2LCJuYmYiOjE1MjgyOTkzNjYsImp0aSI6InBTaXdMQlhhM3M0R0xJN3IiLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.4Of18CTrUl-0vRxywYY8W8T309z4EeE91j7QyUDnXvc\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "409937bb-5226-421b-82c4-1bddedcf6ae1",
+			"name": "Servicio que guarda o actualiza un rol",
+			"url": "http://innbase.local/api/v1/roles",
+			"description": "Si queremos crear un nuevo rol, enviamos el campo id = 0, si queremos actualizar, enviamos el id del rol",
+			"data": [
+				{
+					"key": "id",
+					"value": "0",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "role",
+					"value": "regular",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9pbm5iYXNlLmxvY2FsXC9hcGlcL3YxXC9sb2dpbiIsImlhdCI6MTUyNzYzMTYzNCwiZXhwIjoxNTI3NjM1MjM0LCJuYmYiOjE1Mjc2MzE2MzQsImp0aSI6InpTUlpyYVp1ekVFeFp6Nk0iLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.h_L5zqJk8X1uOMFEugSEjb0kzq8zPIKRxj8lryXGSkc",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"method": "POST",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "3843923a-5cd8-4fc7-9252-b285555d755c",
+			"headers": "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9pbm5iYXNlLmxvY2FsXC9hcGlcL3YxXC9sb2dpbiIsImlhdCI6MTUyNzYzMTYzNCwiZXhwIjoxNTI3NjM1MjM0LCJuYmYiOjE1Mjc2MzE2MzQsImp0aSI6InpTUlpyYVp1ekVFeFp6Nk0iLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.h_L5zqJk8X1uOMFEugSEjb0kzq8zPIKRxj8lryXGSkc\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "4d71695f-7fe1-4d9d-acf2-d72bb9769cf0",
+			"name": "Servicio que guarda o actualiza un permiso",
+			"url": "http://innbase.local/api/v1/permissions",
+			"description": "Si queremos crear un nuevo permiso, enviamos el campo id = 0, si queremos actualizar, enviamos el id del permiso",
+			"data": [
+				{
+					"key": "id",
+					"value": "0",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "name",
+					"value": "delete_users",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9pbm5iYXNlLmxvY2FsXC9hcGlcL3YxXC9sb2dpbiIsImlhdCI6MTUyNzcxNjIxNCwiZXhwIjoxNTI3NzE5ODE0LCJuYmYiOjE1Mjc3MTYyMTQsImp0aSI6Ijk1MVZvR3ZlZ3N6RlVoMGciLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.z_ZycjMRjssAqQYPZt7iD1qtAs9W44n64R-SqByUszM",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"method": "POST",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "3843923a-5cd8-4fc7-9252-b285555d755c",
+			"headers": "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9pbm5iYXNlLmxvY2FsXC9hcGlcL3YxXC9sb2dpbiIsImlhdCI6MTUyNzcxNjIxNCwiZXhwIjoxNTI3NzE5ODE0LCJuYmYiOjE1Mjc3MTYyMTQsImp0aSI6Ijk1MVZvR3ZlZ3N6RlVoMGciLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.z_ZycjMRjssAqQYPZt7iD1qtAs9W44n64R-SqByUszM\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "5688aa5b-0297-47f6-ba6a-30072e2b1202",
+			"name": "Obtener todos los permisos de un usuario",
+			"url": "http://innbase.local/api/v1/permissions-user/1",
+			"description": "",
+			"data": null,
+			"dataMode": "params",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9pbm5iYXNlLmxvY2FsXC9hcGlcL3YxXC9sb2dpbiIsImlhdCI6MTUyNzcxNjIxNCwiZXhwIjoxNTI3NzE5ODE0LCJuYmYiOjE1Mjc3MTYyMTQsImp0aSI6Ijk1MVZvR3ZlZ3N6RlVoMGciLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.z_ZycjMRjssAqQYPZt7iD1qtAs9W44n64R-SqByUszM",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "3843923a-5cd8-4fc7-9252-b285555d755c",
+			"headers": "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9pbm5iYXNlLmxvY2FsXC9hcGlcL3YxXC9sb2dpbiIsImlhdCI6MTUyNzcxNjIxNCwiZXhwIjoxNTI3NzE5ODE0LCJuYmYiOjE1Mjc3MTYyMTQsImp0aSI6Ijk1MVZvR3ZlZ3N6RlVoMGciLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.z_ZycjMRjssAqQYPZt7iD1qtAs9W44n64R-SqByUszM\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "606e2ddc-642b-4c20-a168-52e17671158a",
+			"name": "Servicio para eliminar un documento",
+			"url": "http://innbase.local/api/v1/documents/5",
+			"description": "Se envía el id del documento a eliminar",
+			"data": null,
+			"dataMode": "params",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9pbm5iYXNlLmxvY2FsXC9hcGlcL3YxXC9sb2dpbiIsImlhdCI6MTUyODI5OTM2NiwiZXhwIjoxNTI5NTk1MzY2LCJuYmYiOjE1MjgyOTkzNjYsImp0aSI6InBTaXdMQlhhM3M0R0xJN3IiLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.4Of18CTrUl-0vRxywYY8W8T309z4EeE91j7QyUDnXvc",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"method": "DELETE",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "a90fc969-7ea4-4f80-bab4-0d62aae0c861",
+			"headers": "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9pbm5iYXNlLmxvY2FsXC9hcGlcL3YxXC9sb2dpbiIsImlhdCI6MTUyODI5OTM2NiwiZXhwIjoxNTI5NTk1MzY2LCJuYmYiOjE1MjgyOTkzNjYsImp0aSI6InBTaXdMQlhhM3M0R0xJN3IiLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.4Of18CTrUl-0vRxywYY8W8T309z4EeE91j7QyUDnXvc\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "8967fb64-3798-4514-a0ce-56cb57a6f1e2",
+			"name": "Guardar o actualizar un usuario",
+			"url": "http://innbase.local/api/v1/users",
+			"description": "Se envía el id = 0, para crear un nuevo usuario\n\nSe envía el id = ?(valor id usuario), para editar el usuario con ese id",
+			"data": [
+				{
+					"key": "id",
+					"value": "1",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "name",
+					"value": "Catalina Grajales",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "email",
+					"value": "catagrajales.13@gmail.com",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "status",
+					"value": "1",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "role_id",
+					"value": "1",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9pbm5iYXNlLmxvY2FsXC9hcGlcL3YxXC9sb2dpbiIsImlhdCI6MTUyODIxMDI2MCwiZXhwIjoxNTI5NTA2MjYwLCJuYmYiOjE1MjgyMTAyNjAsImp0aSI6Ikx4VmtlZm4wa1E0eHZHS0EiLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.a4gJ25Wew_jYWArccLcok-PnfdK_Y4HrG9tfSFvhfCs",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"method": "POST",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "42e31d85-46d4-4c26-896b-f35769270275",
+			"headers": "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9pbm5iYXNlLmxvY2FsXC9hcGlcL3YxXC9sb2dpbiIsImlhdCI6MTUyODIxMDI2MCwiZXhwIjoxNTI5NTA2MjYwLCJuYmYiOjE1MjgyMTAyNjAsImp0aSI6Ikx4VmtlZm4wa1E0eHZHS0EiLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.a4gJ25Wew_jYWArccLcok-PnfdK_Y4HrG9tfSFvhfCs\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "96d77124-4b7e-4217-83e1-ccf2dd6eb6dd",
+			"name": "Recuperación de contraseña",
+			"url": "http://innbase.local/api/v1/recover-password",
+			"description": "",
+			"data": [
+				{
+					"key": "email",
+					"value": "catalina.grajales@cinnco.co",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"headerData": [],
+			"method": "POST",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "fb3e766c-08e3-4de9-9cc2-0b22849d32cb",
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "ac707a98-cdac-4c22-a1fb-58370080af7e",
+			"name": "Login",
+			"url": "http://innbase.local/api/v1/login",
+			"description": "Este login se hace con email y password, si requieres modificar los datos de login, puedes hacerlo en la función Auth\\AuthController@login, modificando la siguiente línea\n\n$credentials = request(['email', 'password']);",
+			"data": [
+				{
+					"key": "email",
+					"value": "catagrajales.13@gmail.com",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "123456",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"headerData": [],
+			"method": "POST",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "fb3e766c-08e3-4de9-9cc2-0b22849d32cb",
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "af0456f5-37e8-4374-b136-ce930fb6a51b",
+			"name": "Servicio para revocar un permiso a un rol",
+			"url": "http://innbase.local/api/v1/revoke-permission-to",
+			"description": "",
+			"data": [
+				{
+					"key": "role_id",
+					"value": "1",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "permission_id",
+					"value": "1",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9pbm5iYXNlLmxvY2FsXC9hcGlcL3YxXC9sb2dpbiIsImlhdCI6MTUyNzE3NjcwNSwiZXhwIjoxNTI3MTgwMzA1LCJuYmYiOjE1MjcxNzY3MDUsImp0aSI6ImpkSXNhNFFUVzhvNXltQTgiLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.y-pPCTq2aG-IACyO_5TqSIGNs_NKXgr-GrAfrEYvysk",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"method": "POST",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "3843923a-5cd8-4fc7-9252-b285555d755c",
+			"headers": "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9pbm5iYXNlLmxvY2FsXC9hcGlcL3YxXC9sb2dpbiIsImlhdCI6MTUyNzE3NjcwNSwiZXhwIjoxNTI3MTgwMzA1LCJuYmYiOjE1MjcxNzY3MDUsImp0aSI6ImpkSXNhNFFUVzhvNXltQTgiLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.y-pPCTq2aG-IACyO_5TqSIGNs_NKXgr-GrAfrEYvysk\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "af2781d4-785c-419f-bdab-71bbeab2f68f",
+			"name": "Servicio para remover un rol a un usuario",
+			"url": "http://innbase.local/api/v1/remove-role",
+			"description": "",
+			"data": [
+				{
+					"key": "role_id",
+					"value": "1",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "user_id",
+					"value": "1",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9pbm5iYXNlLmxvY2FsXC9hcGlcL3YxXC9sb2dpbiIsImlhdCI6MTUyNzE3NjcwNSwiZXhwIjoxNTI3MTgwMzA1LCJuYmYiOjE1MjcxNzY3MDUsImp0aSI6ImpkSXNhNFFUVzhvNXltQTgiLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.y-pPCTq2aG-IACyO_5TqSIGNs_NKXgr-GrAfrEYvysk",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"method": "POST",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "3843923a-5cd8-4fc7-9252-b285555d755c",
+			"headers": "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9pbm5iYXNlLmxvY2FsXC9hcGlcL3YxXC9sb2dpbiIsImlhdCI6MTUyNzE3NjcwNSwiZXhwIjoxNTI3MTgwMzA1LCJuYmYiOjE1MjcxNzY3MDUsImp0aSI6ImpkSXNhNFFUVzhvNXltQTgiLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.y-pPCTq2aG-IACyO_5TqSIGNs_NKXgr-GrAfrEYvysk\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "b707b4dc-f022-4278-b7df-93823eb720fe",
+			"name": "Servicio que lista todos los roles",
+			"url": "http://innbase.local/api/v1/roles",
+			"description": "",
+			"data": null,
+			"dataMode": "params",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9pbm5iYXNlLmxvY2FsXC9hcGlcL3YxXC9sb2dpbiIsImlhdCI6MTUyNzYzMTYzNCwiZXhwIjoxNTI3NjM1MjM0LCJuYmYiOjE1Mjc2MzE2MzQsImp0aSI6InpTUlpyYVp1ekVFeFp6Nk0iLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.h_L5zqJk8X1uOMFEugSEjb0kzq8zPIKRxj8lryXGSkc",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "3843923a-5cd8-4fc7-9252-b285555d755c",
+			"headers": "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9pbm5iYXNlLmxvY2FsXC9hcGlcL3YxXC9sb2dpbiIsImlhdCI6MTUyNzYzMTYzNCwiZXhwIjoxNTI3NjM1MjM0LCJuYmYiOjE1Mjc2MzE2MzQsImp0aSI6InpTUlpyYVp1ekVFeFp6Nk0iLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.h_L5zqJk8X1uOMFEugSEjb0kzq8zPIKRxj8lryXGSkc\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "e21d7635-ed18-4244-9990-3b9eaf3d3df6",
+			"name": "Cerrar sesión",
+			"url": "http://innbase.local/api/v1/logout",
+			"description": "",
+			"data": null,
+			"dataMode": "params",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9pbm5iYXNlLmxvY2FsXC9hcGlcL3YxXC9sb2dpbiIsImlhdCI6MTUyNzE3NjcwNSwiZXhwIjoxNTI3MTgwMzA1LCJuYmYiOjE1MjcxNzY3MDUsImp0aSI6ImpkSXNhNFFUVzhvNXltQTgiLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.y-pPCTq2aG-IACyO_5TqSIGNs_NKXgr-GrAfrEYvysk",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"method": "POST",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "fb3e766c-08e3-4de9-9cc2-0b22849d32cb",
+			"headers": "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9pbm5iYXNlLmxvY2FsXC9hcGlcL3YxXC9sb2dpbiIsImlhdCI6MTUyNzE3NjcwNSwiZXhwIjoxNTI3MTgwMzA1LCJuYmYiOjE1MjcxNzY3MDUsImp0aSI6ImpkSXNhNFFUVzhvNXltQTgiLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.y-pPCTq2aG-IACyO_5TqSIGNs_NKXgr-GrAfrEYvysk\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "f0e60f4a-a699-4e96-a79b-442036e676d5",
+			"name": "Registro",
+			"url": "http://innbase.local/api/v1/signup",
+			"description": "Los campos base para este registro son el email, name y password, puedes personalizar el formulario de registro con los campos que necesites y modificando la función de registro ubicada en el Auth\\AuthController.php",
+			"data": [
+				{
+					"key": "email",
+					"value": "catalina.grajales@cinnco.co",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "name",
+					"value": "Catalina Grajales Aristizabal",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "123456",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"headerData": [],
+			"method": "POST",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "fb3e766c-08e3-4de9-9cc2-0b22849d32cb",
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "f3348b34-e823-46fa-9470-330c4ca9ea67",
+			"name": "Servicio para asignar un rol a un usuario",
+			"url": "http://innbase.local/api/v1/role-to-user",
+			"description": "",
+			"data": [
+				{
+					"key": "role_id",
+					"value": "1",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "user_id",
+					"value": "1",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9pbm5iYXNlLmxvY2FsXC9hcGlcL3YxXC9sb2dpbiIsImlhdCI6MTUyNzE3NjcwNSwiZXhwIjoxNTI3MTgwMzA1LCJuYmYiOjE1MjcxNzY3MDUsImp0aSI6ImpkSXNhNFFUVzhvNXltQTgiLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.y-pPCTq2aG-IACyO_5TqSIGNs_NKXgr-GrAfrEYvysk",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"method": "POST",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "3843923a-5cd8-4fc7-9252-b285555d755c",
+			"headers": "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9pbm5iYXNlLmxvY2FsXC9hcGlcL3YxXC9sb2dpbiIsImlhdCI6MTUyNzE3NjcwNSwiZXhwIjoxNTI3MTgwMzA1LCJuYmYiOjE1MjcxNzY3MDUsImp0aSI6ImpkSXNhNFFUVzhvNXltQTgiLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.y-pPCTq2aG-IACyO_5TqSIGNs_NKXgr-GrAfrEYvysk\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "f4dc08ee-bc1c-4d9f-8e95-8165bde29df6",
+			"name": "Retorna el usuario en sesión",
+			"url": "http://innbase.local/api/v1/me",
+			"description": "",
+			"data": null,
+			"dataMode": "params",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9pbm5iYXNlLmxvY2FsXC9hcGlcL3YxXC9sb2dpbiIsImlhdCI6MTUyNzAxNjM0OSwiZXhwIjoxNTI3MDE5OTQ5LCJuYmYiOjE1MjcwMTYzNDksImp0aSI6IjJWVmZITk5JN0RGcWwwd2QiLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.R3mALS4hw3vLchx_-lD0MXkzDGjby705yj4qfiQCmgM",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"method": "POST",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "fb3e766c-08e3-4de9-9cc2-0b22849d32cb",
+			"headers": "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9pbm5iYXNlLmxvY2FsXC9hcGlcL3YxXC9sb2dpbiIsImlhdCI6MTUyNzAxNjM0OSwiZXhwIjoxNTI3MDE5OTQ5LCJuYmYiOjE1MjcwMTYzNDksImp0aSI6IjJWVmZITk5JN0RGcWwwd2QiLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.R3mALS4hw3vLchx_-lD0MXkzDGjby705yj4qfiQCmgM\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "fe1668df-2a89-428b-a4e4-0989541608fe",
+			"name": "Listado de usuarios",
+			"url": "http://innbase.local/api/v1/documents?rows=10&search",
+			"description": "rows: Número de filas por página\nsearch: Campo de búsqueda",
+			"data": null,
+			"dataMode": "params",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9pbm5iYXNlLmxvY2FsXC9hcGlcL3YxXC9sb2dpbiIsImlhdCI6MTUyODI5OTM2NiwiZXhwIjoxNTI5NTk1MzY2LCJuYmYiOjE1MjgyOTkzNjYsImp0aSI6InBTaXdMQlhhM3M0R0xJN3IiLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.4Of18CTrUl-0vRxywYY8W8T309z4EeE91j7QyUDnXvc",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [
+				{
+					"key": "rows",
+					"value": "10",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "search",
+					"value": "",
+					"equals": false,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"auth": null,
+			"events": [],
+			"folder": "a90fc969-7ea4-4f80-bab4-0d62aae0c861",
+			"headers": "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9pbm5iYXNlLmxvY2FsXC9hcGlcL3YxXC9sb2dpbiIsImlhdCI6MTUyODI5OTM2NiwiZXhwIjoxNTI5NTk1MzY2LCJuYmYiOjE1MjgyOTkzNjYsImp0aSI6InBTaXdMQlhhM3M0R0xJN3IiLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.4Of18CTrUl-0vRxywYY8W8T309z4EeE91j7QyUDnXvc\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "fec4599f-91f2-43c8-bf26-4b2263a2237b",
+			"name": "Sincronizar permisos de un rol",
+			"url": "http://innbase.local/api/v1/sync-permissions",
+			"description": "En el campo 'permissions', se envían todos los permisos que estarán asociados al rol (separados por ,).\nSi se ha eliminado un permiso, este no va en la cadena de texto",
+			"data": [
+				{
+					"key": "role_id",
+					"value": "1",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "permissions",
+					"value": "update_users,index_users,create_users,delete_users",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9pbm5iYXNlLmxvY2FsXC9hcGlcL3YxXC9sb2dpbiIsImlhdCI6MTUyODI5OTM2NiwiZXhwIjoxNTI5NTk1MzY2LCJuYmYiOjE1MjgyOTkzNjYsImp0aSI6InBTaXdMQlhhM3M0R0xJN3IiLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.4Of18CTrUl-0vRxywYY8W8T309z4EeE91j7QyUDnXvc",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"method": "POST",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "3843923a-5cd8-4fc7-9252-b285555d755c",
+			"headers": "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9pbm5iYXNlLmxvY2FsXC9hcGlcL3YxXC9sb2dpbiIsImlhdCI6MTUyODI5OTM2NiwiZXhwIjoxNTI5NTk1MzY2LCJuYmYiOjE1MjgyOTkzNjYsImp0aSI6InBTaXdMQlhhM3M0R0xJN3IiLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.4Of18CTrUl-0vRxywYY8W8T309z4EeE91j7QyUDnXvc\n",
+			"pathVariables": {}
+		}
+	]
+}

@@ -1,0 +1,10 @@
+@import '~src/sass/custom-variables';
+
+.bg-color-login {
+	background-color: $background-color-login
+}
+
+.bg-image-login {
+	  background: url(../../assets/images/bg-image.jpg) no-repeat top center;
+    background-size: cover;
+}

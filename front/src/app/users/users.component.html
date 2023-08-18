@@ -1,0 +1,127 @@
+<div class="row">
+	<div class="col">
+		<div class="soft-box p-5 bg-white">
+			<h1 class="title">{{ 'forms.users' | translate }}</h1>
+		</div>
+	</div>
+</div>
+<div class="spacer20"></div>
+<div class="row">
+	<div class="col text-right">
+		<button class="btn btn-primary" (click)="openCanvas()">{{ 'buttons.new_user' | translate }}</button>
+	</div>
+</div>
+<div class="spacer10"></div>
+<div class="row d-flex align-items-center">
+	<div class="col-md-1">
+		<select [(ngModel)]="pagesNumber" name="pagesNumber" class="form-control" (change)="getUsers('')">
+			<option value="10">10</option>
+			<option value="20">20</option>
+			<option value="50">50</option>
+			<option value="100">100</option>
+		</select>
+	</div>
+	<div class="col-md-4">
+		{{ 'forms.rows' | translate }}
+	</div>
+	<div class="col-md-3 offset-md-4">
+		<div class="input-group">
+        	<div class="input-group-prepend">
+          		<div class="input-group-text"><i class="fa fa-search"></i></div>
+        	</div>	
+        	<input [(ngModel)]="search" name="search" type="text" class="form-control" (keyup)="getUsers('')">
+      	</div>
+	</div>
+</div>
+<div class="spacer10"></div>
+<div class="row">
+	<div class="col">
+		<div class="soft-box p-5 bg-white">
+			<div class="table-responsive">
+				<table class="table">
+					<thead>
+						<tr>
+							<th>#</th>
+							<th>{{ 'forms.name' | translate }}</th>
+							<th>{{ 'forms.email' | translate }}</th>
+							<th>{{ 'forms.status' | translate }}</th>
+							<th>{{ 'forms.role' | translate }}</th>
+							<th>{{ 'forms.last_connection' | translate }}</th>
+							<th>&nbsp;&nbsp;&nbsp;</th>
+						</tr>
+					</thead>
+					<tbody *ngIf="users.length > 0">
+						<tr *ngFor="let user of users">
+							<td>{{user.id}}</td>
+							<td>{{user.name}}</td>
+							<td>{{user.email}}</td>
+							<td>{{user.status_name}}</td>
+							<td>{{user.role_name}}</td>
+							<td>{{user.last_connection}}</td>
+							<td class="text-center">
+								<a href="javascript:;" (click)="editUser(user.id)" class="btn-icon btn-edit p-5">
+									<i class="fa fa-edit"></i>
+								</a>
+								<a href="javascript:;" (click)="confirmDelete(user.id)" class="btn-icon btn-delete p-5">
+									<i class="fa fa-trash"></i>
+								</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="spacer20"></div>
+<div class="row">
+	<div class="col-md-8 offset-md-2 d-flex justify-content-center">
+		<ul class="pagination">
+		    <li *ngFor="let page of pages" class="page-item {{page[2]}}">
+		      	<a class="page-link" href="javascript:;" (click)="getPage(page[1])" [innerHTML]="page[0]"></a>
+		    </li>
+		</ul>
+	</div>
+	<div class="col-md-2">
+		<div class="buttons text-right">
+			<a href="javascript:;" class="btn btn-primary" (click)="exportData('pdf')">PDF</a>
+			<a href="javascript:;" class="btn btn-primary ml-1" (click)="exportData('excel')">EXCEL</a>
+		</div>
+	</div>
+</div>
+
+<div class="canvas right" [class.open]="canvasUser">
+	<div class="canvas-header p-10-20">
+		<h3>{{ 'forms.user_form' | translate }}</h3>
+	</div>
+	<form class="p-20">
+	  	<div class="form-group">
+	    	<label>{{ 'forms.name' | translate }}</label>
+	    	<input [(ngModel)]="user.name" name="name" type="text" class="form-control" placeholder="{{ 'forms.name' | translate }}">
+	  	</div>
+	  	<div class="form-group">
+	    	<label>{{ 'forms.email' | translate }}</label>
+	    	<input [(ngModel)]="user.email" name="email" type="email" class="form-control" placeholder="{{ 'forms.email' | translate }}">
+	  	</div>
+	  	<div class="form-group">
+	    	<label>{{ 'forms.password' | translate }}</label>
+	    	<input [(ngModel)]="user.password" name="password" type="password" class="form-control" placeholder="{{ 'forms.password' | translate }}">
+	  	</div>
+	  	<div class="form-group">
+	    	<label>{{ 'forms.role' | translate }}</label>
+	    	<select [(ngModel)]="user.role_id" name="role_id" class="form-control">
+	    		<option value="">{{ 'forms.select_role' | translate }}</option>
+	    		<option *ngFor="let role of roles" value="{{role.id}}">{{role.name}}</option>
+	    	</select>
+	  	</div>
+	  	<div class="form-group d-flex justify-content-between">
+	  		<label>{{ 'forms.status' | translate }}</label>
+	  		<ui-switch [(ngModel)]="user.status" name="status"></ui-switch>
+	  	</div>
+	  	<button type="submit" class="btn btn-primary" (click)="saveUser()">{{ 'buttons.save' | translate }}</button>
+	</form>
+</div>
+
+<div class="blur-overlay" [class.open]="showOverlay" (click)="closeCanvas()">
+	
+</div>

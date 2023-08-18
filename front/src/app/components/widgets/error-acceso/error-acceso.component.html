@@ -1,0 +1,26 @@
+<!--begin:Template for modal errors-->
+<ng-template #modalErrorsAcceso>
+  <div class="modal-header error-header" id="_modalErrors">
+    <div>
+      <div
+        class="cf-modal-header d-flex align-items-center justify-content-center"
+      >
+        <i class="fa fa-exclamation-circle fa-3x" aria-hidden="true"></i>&nbsp;
+      </div>
+      {{ message }}
+    </div>
+  </div>
+  <div class="modal-body">
+    <div class="cf-modal-footer">
+      <div class="d-flex cf-buttons-inline">
+        <button
+          class="btn btn-primary cf-btn cf-btn-secondary-4 cf-btn-block"
+          (click)="modalRef.hide()"
+        >
+          Aceptar
+        </button>
+      </div>
+    </div>
+  </div>
+</ng-template>
+<!--end:Template for modal errors-->

@@ -1,0 +1,99 @@
+<app-onbd-health></app-onbd-health>
+<app-welcome [showHideUserhealth]="false"></app-welcome>
+<div
+  id="_section-1"
+  class="cf-section cf-div-image"
+  [style.backgroundImage]="'url(' + bgimage + ')'"
+>
+  <div class="container">
+    <div class="row d-flex align-items-center">
+      <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12">
+        <ng-container *ngTemplateOutlet="formLogin"></ng-container>
+      </div>
+      <div class="col-xl-7 col-lg-6 col-md-12 col-sm-12">
+        <ng-container *ngTemplateOutlet="content"></ng-container>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-terms-conditions></app-terms-conditions>
+
+<!--
+    INIT TEMPLATES
+-->
+
+<!--begin:Template for login form-->
+<ng-template #formLogin>
+  <app-login-health></app-login-health>
+</ng-template>
+<!--end:Template for login form-->
+
+<!--begin:Template for aside-->
+<ng-template #content>
+  <div class="cf-content-section">
+    <div class="cf-content-header">
+      <h2 style="color: #00afeb; text-align: center;">
+        Postulación para la entrega del Subsidio de Salud Femenina Confa Salud. Tú nuestro compromiso de corazón.
+      </h2>
+      <p style="color: rgb(118, 113, 113)">
+        Confa otorga un nuevo beneficio a través del subsidio familiar que consiste en la entrega de un kit de salud 
+        femenina que te permitirá gestionar tu ciclo menstrual de una manera más consciente con el medio ambiente y 
+        con la economía de tu hogar. 
+      </p>
+      <p style="color: rgb(118, 113, 113)">El kit se compone de:</p>
+      <ul style="padding-left: 25px;">
+        <li style="color: rgb(118, 113, 113)" type="disc">
+          Copa menstrual.
+        </li>
+        <li style="color: rgb(118, 113, 113)" type="disc">
+          Ollita esterilizadora.
+        </li>
+      </ul>
+      <br>
+      <p style="color: rgb(118, 113, 113)">Los requisitos para acceder a este beneficio son:</p> 
+      <ul style="padding-left: 25px;">
+        <li style="color: rgb(118, 113, 113)" type="square">
+          Ser afiliado o beneficiario de Confa con categorías A o B.
+        </li>
+        <li style="color: rgb(118, 113, 113)" type="square">
+          Aplica para mujeres entre los 18 y los 54 años.
+        </li> 
+        <li style="color: rgb(118, 113, 113)" type="square">
+          Se puede realizar una única postulación.
+        </li> 
+      </ul>    
+      <br>
+      <p style="color: rgb(118, 113, 113)">El subsidio solo podrá ser reclamado por la beneficiaria, no se permite la entrega de este beneficio  a terceras personas.</p>
+    </div>
+    <div class="cf-content-divider mt-2 mb-2" style="color: rgb(118, 113, 113) !important"></div>
+    <div class="cf-content-body">
+      <div class="row">
+        <div class="col-xl-10 col-lg-12 col-md-12 col-sm-12">
+          <div class="cf-widget cf-widget-1">
+            <div class="cf-widget-body"></div>
+            <!-- <div class="ct-widget-footer">
+              <div class="cf-widget-buttons cf-buttons-inline">
+                <button
+                  class="btn btn-primary cf-btn cf-btn-secondary cf-btn-block"
+                  (click)="downloadAppFunc('android')"
+                >
+                  <span class="cf-text-hidden">Descárgala en</span>
+                  Play Store
+                </button>
+                <button
+                  class="btn btn-primary cf-btn cf-btn-secondary cf-btn-block"
+                  (click)="downloadAppFunc('ios')"
+                >
+                  <span class="cf-text-hidden">Descárgala en</span>
+                  App Store
+                </button>
+              </div>
+            </div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+<!--end:Template for aside-->

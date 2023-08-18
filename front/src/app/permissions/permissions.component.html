@@ -1,0 +1,41 @@
+<div class="row">
+	<div class="col">
+		<div class="soft-box p-5 bg-white">
+			<h1 class="title">{{ 'forms.permissions' | translate }}</h1>
+		</div>
+	</div>
+</div>
+<div class="spacer20"></div>
+<div class="row">
+	<div class="col-md-4">
+		<div class="soft-box p-5 bg-white">
+			<ul *ngIf="roles.length > 0" class="simple-ul">
+				<li *ngFor="let role of roles" [class.selected]="roleSelected == role.id" (click)="selectRole(role.id)">{{role.name}}</li>
+			</ul>
+			<br>
+			<div class="form-group" *ngIf="showInputRole">
+				<label>{{ 'forms.role_name' | translate }}</label>
+				<input type="text" [(ngModel)]="roleName" name="roleName" value="" placeholder="{{ 'forms.role_name' | translate }}" class="form-control">
+			</div>
+			<button class="btn btn-primary btn-block" (click)="newRole()">
+				<span *ngIf="!showInputRole">{{ 'buttons.new_role' | translate }}</span>
+				<span *ngIf="showInputRole">{{ 'buttons.save_role' | translate }}</span>
+			</button>
+		</div>
+		<br>
+	</div>
+	<div class="col-md-8">
+		<div class="soft-box p-5 bg-white">
+			<accordion [closeOthers]="oneAtTime" *ngIf="sections.length > 0">
+			  	<accordion-group *ngFor="let section of sections" heading="{{section.name}}">
+			  		<ul>
+			  			<li class="d-flex justify-content-between" *ngFor="let permission of section.permissions">
+			  				{{permission.name}}
+			  				<ui-switch [(ngModel)]="permission.allowed" (change)="changePermissions(permission.id)"></ui-switch>
+			  			</li>
+			  		</ul>
+			  	</accordion-group>
+			</accordion>
+		</div>
+	</div>
+</div>

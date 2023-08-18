@@ -1,0 +1,1040 @@
+<div class="page-wrapper">
+  <div id="body-content">
+    <div class="home-accommodation">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-3">
+            <div class="search">
+              <a href="javascript:;" (click)="volver()">
+                <i class="fa fa-arrow-left" aria-hidden="true"></i>&nbsp; Atrás
+              </a>
+            </div>
+          </div>
+          <div class="col-md-9 text-right breadcrumbs">
+            <a href="javascript:;" (click)="volver()">
+              <i class="fa fa-chevron-right" aria-hidden="true"></i>
+              B&uacute;squeda avanzada
+            </a>
+            <a href="javascript:;" class="active">
+              <i class="fa fa-chevron-right" aria-hidden="true"></i> Ingresar
+              asistentes
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <span class="titles">Titular</span><br />
+        <span class="userInfo"
+          >{{ name1 }} {{ name2 }} {{ lastName1 }} {{ lastName2 }}</span
+        >
+      </div>
+      <div class="col-md-4">
+        <span class="titles">Documento</span><br />
+        <span class="userInfo">{{ document }}</span>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card image-border">
+          <carousel
+            *ngIf="resort_id == 4"
+            [interval]="myInterval"
+            [(activeSlide)]="activeSlideIndex"
+          >
+            <slide *ngFor="let slide of slides; let index = index">
+              <img
+                *ngIf="slide.imagen"
+                [src]="slide.imagen"
+                alt="imagen slide"
+                style="display: block; width: 100%"
+                class="image-border"
+              />
+              <img
+                *ngIf="!slide.imagen"
+                src="../../assets/images/roche-default-min.png"
+                alt=""
+                class="img-responsive"
+                class="image-border"
+              />
+            </slide>
+          </carousel>
+
+          <carousel
+            *ngIf="resort_id == 3"
+            [interval]="myInterval"
+            [(activeSlide)]="activeSlideIndex"
+          >
+            <slide *ngFor="let slide of slides; let index = index">
+              <img
+                *ngIf="slide.imagen"
+                [src]="slide.imagen"
+                alt="imagen slide"
+                style="display: block; width: 100%"
+                class="image-border"
+              />
+              <img
+                *ngIf="!slide.imagen"
+                src="../../assets/images/santagueda-default-min.png"
+                alt=""
+                class="img-responsive"
+                class="image-border"
+              />
+            </slide>
+          </carousel>
+
+          <carousel
+            *ngIf="resort_id == 7"
+            [interval]="myInterval"
+            [(activeSlide)]="activeSlideIndex"
+          >
+            <slide *ngFor="let slide of slides; let index = index">
+              <img
+                *ngIf="slide.imagen"
+                [src]="slide.imagen"
+                alt="imagen slide"
+                style="display: block; width: 100%"
+                class="image-border"
+              />
+              <img
+                *ngIf="!slide.imagen"
+                src="../../assets/images/bosque-default-min.png"
+                alt=""
+                class="img-responsive"
+                class="image-border"
+              />
+            </slide>
+          </carousel>
+
+          <div class="card-body">
+            <span class="resort"
+              >Centro Recreacional {{ resort_name | titlecase }}</span
+            ><br />
+            <span class="card-title">{{
+              apartment_name | titlecase | eliminarNumeros
+            }}</span
+            ><br />
+            <span class="card-subtitle">
+              Capacidad de alojamiento: {{ quantity }} personas.</span
+            ><br />
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                Fecha ingreso <br /><span class="details">{{
+                  dateStart | date: "MMMM d, y" | titlecase
+                }}</span>
+              </li>
+              <li class="list-group-item">
+                Fecha salida <br /><span class="details">{{
+                  dateFinish | date: "MMMM d, y" | titlecase
+                }}</span>
+              </li>
+              <li class="list-group-item">
+                <span class="limit">Fecha l&iacute;mite de pago</span>
+                <br /><span class="details">{{
+                  dateLimit | date: "MMMM d, y" | titlecase
+                }}</span>
+              </li>
+              <li class="list-group-item">
+                <span class="limit">Valor</span> <br /><span class="details"
+                  >${{ value | number }}</span
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-8">
+        <div class="p-10">Agregar asistente<br /></div>
+        <form class="form-inline row">
+          <div class="form-group col-md-12 p-5">
+            <input
+              type="text"
+              (keyup)="validateDocument()"
+              class="form-control search"
+              id="search"
+              name="search"
+              [(ngModel)]="search"
+              placeholder="Digita el documento"
+              autocomplete="false"
+              pattern="\d*"
+              maxlength="15"
+            />
+            <button
+              class="btn btn-primary search-btn"
+              (click)="searchAssintants()"
+            >
+              {{ "buttons.search" | translate }}
+              <i class="fa fa-search" aria-hidden="true"></i>
+            </button>
+          </div>
+        </form>
+
+        <div *ngIf="filterAssintants.length > 0" class="row p-20">
+          <div class="p-10">{{ filterAssintants.length }} Resultados</div>
+
+          <form
+            class="form-inline row assisant"
+            *ngFor="let assistant of filterAssintants; let i = index"
+          >
+            <div class="form-group col-md-12">
+              <span
+                >{{ assistant.nombre1 }} {{ assistant.nombre2 }}
+                {{ assistant.apellido1 }}&nbsp;</span
+              >
+              <span class="titles"
+                >{{ assistant.tipoDocumento }} {{ assistant.documento }}</span
+              >
+              <div class="add-button">
+                <button
+                  class="btn btn-primary search-btn"
+                  (click)="addAssistance(i)"
+                >
+                  <i class="fa fa-spinner fa-spin fa fa-fw" *ngIf="loader"></i>
+                  <span class="sr-only"></span>
+                  {{ "buttons.add" | translate }}
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <div class="row p-20" *ngIf="showFormNewAssistant">
+          <div class="p-10">Formulario para registrar asistente<br /></div>
+
+          <form class="form row">
+            <div class="form-group col-md-6">
+              <label>Tipo de documento</label>
+              <select
+                name="tipoDocumento"
+                id="tipoDocumento"
+                [(ngModel)]="newAssitant.tipoDocumento"
+                class="form-control"
+              >
+                <option value="" selected>
+                  * {{ "health.login.fields.document_type" | translate }}
+                </option>
+                <option *ngFor="let item of documentType" value="{{ item.id }}">
+                  {{ item.name }}
+                </option>
+              </select>
+              <i class="fa fa-chevron-down"></i>
+            </div>
+            <div class="form-group col-md-6">
+              <label>N&uacute;mero de documento</label>
+              <input
+                type="text"
+                class="form-control"
+                id="search"
+                name="search"
+                [(ngModel)]="newAssitant.documento"
+                placeholder="N&uacute;mero de documento"
+                autocomplete="false"
+                disabled
+              />
+            </div>
+
+            <div class="form-group col-md-6">
+              <label>Primer nombre</label>
+              <input
+                type="text"
+                class="form-control"
+                id="nombre1"
+                name="nombre1"
+                [(ngModel)]="newAssitant.nombre1"
+                (keyup)="validateInputs('name1')"
+                placeholder="Primer nombre"
+                maxlength="20"
+                autocomplete="false"
+              />
+              <span *ngIf="alert_name1"
+                ><i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+                &nbsp; {{ alert_name1 }}</span
+              >
+            </div>
+            <div class="form-group col-md-6">
+              <label>Segundo nombre</label>
+              <input
+                type="text"
+                class="form-control"
+                id="nombre2"
+                name="nombre2"
+                [(ngModel)]="newAssitant.nombre2"
+                (keyup)="validateInputs('name2')"
+                placeholder="Segundo nombre"
+                maxlength="30"
+                autocomplete="false"
+              />
+              <span *ngIf="alert_name2"
+                ><i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+                &nbsp; {{ alert_name2 }}</span
+              >
+            </div>
+
+            <div class="form-group col-md-6">
+              <label>Primer apellido</label>
+              <input
+                type="text"
+                class="form-control"
+                id="apellido1"
+                name="apellido1"
+                [(ngModel)]="newAssitant.apellido1"
+                (keyup)="validateInputs('lastname1')"
+                placeholder="Primer apellido"
+                maxlength="20"
+                autocomplete="false"
+              />
+              <span *ngIf="alert_lastname1"
+                ><i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+                &nbsp; {{ alert_lastname1 }}</span
+              >
+            </div>
+            <div class="form-group col-md-6">
+              <label>Segundo apellido</label>
+              <input
+                type="text"
+                class="form-control"
+                id="apellido2"
+                name="apellido2"
+                [(ngModel)]="newAssitant.apellido2"
+                (keyup)="validateInputs('lastname2')"
+                maxlength="30"
+                placeholder="Segundo Apellido"
+                autocomplete="false"
+              />
+              <span *ngIf="alert_lastname2"
+                ><i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+                &nbsp; {{ alert_lastname2 }}</span
+              >
+            </div>
+
+            <div class="form-group col-md-6">
+              <label>{{ placeholderEntry }}</label>
+              <my-date-picker
+                class="filter"
+                [(ngModel)]="dat1"
+                [options]="dateOptionsInit"
+                [placeholder]="placeholderEntry"
+                (dateChanged)="dateChange($event, 1)"
+                [ngModelOptions]="{ standalone: true }"
+              ></my-date-picker>
+            </div>
+            <div class="form-group col-md-6">
+              <label>G&eacute;nero</label>
+              <select
+                name="genero"
+                id="genero"
+                [(ngModel)]="newAssitant.genero"
+                class="form-control"
+              >
+                <option value="">G&eacute;nero</option>
+                <option value="M">Masculino</option>
+                <option value="F">Femenino</option>
+              </select>
+              <i class="fa fa-chevron-down"></i>
+            </div>
+            <div class="form-group col-md-6">
+              <button
+                class="btn btn-primary mb-2 reserve"
+                (click)="AgregarAssitente()"
+              >
+                AGREGAR ASISTENTE
+              </button>
+            </div>
+            <div class="form-group col-md-6" *ngIf="alertMessage != null">
+              <i class="fa fa-exclamation-circle" aria-hidden="true"></i> &nbsp;
+              {{ alertMessage }}
+            </div>
+          </form>
+        </div>
+
+        <div class="row p-20" *ngIf="familiGroup.length > 0">
+          <div class="p-10">
+            <span>Grupo Familiar</span>
+          </div>
+          <div
+            class="col-md-12"
+            *ngFor="let family of familiGroup; let i = index"
+          >
+            <form class="form-inline assisant" *ngIf="family.show">
+              <div class="form-group col-md-12 assintant-member">
+                <span
+                  >{{ family.nombre1 }} {{ family.nombre2 }}
+                  {{ family.apellido1 }}&nbsp;</span
+                >
+                <span class="titles"
+                  >{{ family.tipoDocumento }} {{ family.documento }}</span
+                >
+                <div class="add-button">
+                  <button
+                    class="btn btn-primary search-btn"
+                    (click)="addAssistanceFamilygroup(i)"
+                  >
+                    {{ "buttons.add" | translate }}
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="spacer20"></div>
+        <div class="col-md-12">
+          <h3>Lista de asistentes</h3>
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Asistentes</th>
+                  <th scope="col">No Identificaci&oacute;n</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">
+                    <div class="assistInfo">
+                      {{ name1 }} {{ name2 }} {{ lastName1 }}
+                    </div>
+                  </th>
+                  <td>{{ typeDocument }}&nbsp;{{ document }}</td>
+                </tr>
+
+                <tr *ngFor="let assintant of listAssintants; let i = index">
+                  <th scope="row">
+                    <div class="assistInfo">
+                      {{ assintant.nombre1 | uppercase }}
+                      {{ assintant.nombre2 | uppercase }}
+                      {{ assintant.apellido1 | uppercase }}
+                      <a
+                        href="javascript:;"
+                        (click)="deleteAssintant(i)"
+                        title="Quitar asistente"
+                        data-toggle="tooltip"
+                        data-placement="top"
+                        ><i class="fa fa-minus-circle" aria-hidden="true"></i
+                      ></a>
+                    </div>
+                  </th>
+                  <td>
+                    {{ assintant.tipoDocumento }}&nbsp;{{ assintant.documento }}
+                  </td>
+                </tr>
+
+                <tr class="value">
+                  <th>Valor Total</th>
+                  <td>${{ value | number }}</td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="row buttons-section">
+              <div class="col-md-12 p-20">
+                <div class="form-group">
+                  <input
+                    type="checkbox"
+                    class="filter"
+                    [(ngModel)]="showReserveButton"
+                    name="accept_habeas"
+                  />
+                  <span class="text-left"
+                    >* Acepto las
+                    <a
+                      href="javascript:;"
+                      class="link-politicas"
+                      (click)="ModalTerms(terms)"
+                    >
+                      pol&iacute;ticas y usos del servicio</a
+                    >.</span
+                  >
+                </div>
+              </div>
+              <div class="col-md-6 p-20" *ngIf="showReserveButton">
+                <button
+                  class="btn btn-primary mb-2 reserve"
+                  (click)="activateModalalert()"
+                >
+                  Reservar
+                </button>
+              </div>
+              <!-- <div class="col-md-6 p-20" *ngIf="showReserveButton">
+              <button class="btn btn-primary mb-2 pay" *ngIf="reserveId != null">pagar</button>
+            </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="overlay" [class.open]="showOverlay">
+  <div class="img text-center">
+    <img
+      src="../../assets/images/loading.png"
+      alt=""
+      style="width: 15%; margin-top: 5%"
+    />
+  </div>
+  <div class="row">
+    <div class="col-md-12 text-center loading-message">
+      <h2>{{ "messages.loading" | translate }}</h2>
+    </div>
+  </div>
+</div>
+
+<!-- <ng-template #documentModal>
+    <div class="p-40">
+        <div class="modal-header row">
+            <span class="modal-title text-center col-md-12">Tu informaci&oacute;n</span>
+
+            <span class="text-center col-md-12">Antes de continuar corroboremos los siguientes datos</span>
+        </div>
+        <div class="modal-body text-center">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <select id="documento" name="documento" [(ngModel)]="updateDocument" class="form-control" [disabled]="validateDocumentModal">
+            <option value="" selected >
+              * {{ "health.login.fields.document_type" | translate }}
+            </option>
+            <option *ngFor="let item of documentType" value="{{ item.id }}" >
+              {{ item.name }}
+            </option>
+          </select>
+                        <i class="fa fa-chevron-down"></i>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <input type="text" class="form-control filter" [(ngModel)]="document" name="document" placeholder="Documento" disabled>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <my-date-picker #mydp="mydatepicker" [(ngModel)]="birthdaySelector" [options]="dateOptionsBirthDay" [placeholder]="placeholderOut" (dateChanged)="updateBirthday($event, 0)" [disabled]="validateBithdayModal"></my-date-picker>
+                    </div>
+                </div>
+
+
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <input type="text" class="form-control filter" (keyup)="validateNumber()" [(ngModel)]="phone" name="phone" placeholder="Número de celular" minlength="7" maxlength="10" [disabled]="!validateBithdayModal">
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <input type="text" class="form-control filter" name="direccion" placeholder="Dirección" [(ngModel)]="address" maxlength="100">
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="spacer20"></div>
+                    <a href="javascript:;" class="btn btn-secondary login-button" (click)="updteDocument()">Continuar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</ng-template> -->
+
+<!-- Button trigger modal -->
+<button
+  type="button"
+  class="btn btn-primary modalUpdateDatos"
+  data-toggle="modal"
+  data-target="#modalUpdateDatos"
+>
+  modalactualizacion datos
+</button>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="modalUpdateDatos"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true"
+  data-backdrop="static"
+  data-keyboard="false"
+  style="z-index: 10000000"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="modal-title text-center"
+          >Tu informaci&oacute;n
+          <br />
+          <span class="text-center"
+            >Antes de continuar corroboremos los siguientes datos</span
+          >
+        </span>
+        <br />
+        <!-- <span class="text-center ">Antes de continuar corroboremos los siguientes datos</span> -->
+        <button
+          type="button"
+          class="close btnclosemodal"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="col-md-12">
+          <div class="form-group">
+            <select
+              id="documento"
+              name="documento"
+              [(ngModel)]="updateDocument"
+              class="form-control"
+              [disabled]="validateDocumentModal"
+            >
+              <option value="" selected>
+                * {{ "health.login.fields.document_type" | translate }}
+              </option>
+              <option *ngFor="let item of documentType" value="{{ item.id }}">
+                {{ item.name }}
+              </option>
+            </select>
+            <i class="fa fa-chevron-down"></i>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-control filter"
+              [(ngModel)]="document"
+              name="document"
+              placeholder="Documento"
+              disabled
+            />
+          </div>
+        </div>
+
+        <div class="col-md-12">
+          <div class="form-group">
+            <my-date-picker
+              #mydp="mydatepicker"
+              [(ngModel)]="birthdaySelector"
+              [options]="dateOptionsBirthDay"
+              [placeholder]="placeholderOut"
+              (dateChanged)="updateBirthday($event)"
+              [disabled]="validateBithdayModal"
+            ></my-date-picker>
+          </div>
+        </div>
+
+        <div class="col-md-12">
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-control filter"
+              (keyup)="validateNumber()"
+              [(ngModel)]="phone"
+              name="phone"
+              placeholder="Número de celular"
+              minlength="7"
+              maxlength="10"
+            />
+          </div>
+        </div>
+
+        <div class="col-md-12">
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-control filter"
+              name="direccion"
+              placeholder="Dirección"
+              [(ngModel)]="address"
+              maxlength="100"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12 mb-3">
+        <div class="form-group">
+          <a
+            href="javascript:;"
+            class="btn btn-secondary login-button"
+            (click)="updteDocument()"
+            >Continuar</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #terms>
+  <div class="p-40">
+    <button
+      type="button"
+      class="close pull-rigth"
+      aria-label="Close"
+      (click)="closeTerms()"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <div class="modal-header row">
+      <span class="modal-title text-center col-md-12"
+        >Normas y recomendaciones para el uso del servicio de alojamiento en los
+        Centros Recreacionales de Confa.</span
+      >
+    </div>
+
+    <div class="modal-body text-center body-content-modal">
+      <div class="row">
+        <div class="col-md-12 justify">
+          <p>
+            Con la firma de la reserva se produce la aceptación y se obliga al
+            cumplimiento de estas normas y recomendaciones, sea esta realizada
+            por el jefe de grupo o por quien este delegue.
+          </p>
+          <p>
+            ● La lista de espera solo aplicará para Semana Santa, 24 y 31 de
+            diciembre. La reserva de alojamiento se puede realizar vía
+            telefónica a través del Centro de Información al Cliente (8783430
+            opción 5), en los diferentes puntos de pago de Confa de La 50, San
+            Marcel, Capitalia, punto CIAC, Mallplaza, en los municipios, en los
+            Centros Recreacionales y a través del Portal Web.
+          </p>
+          <p>
+            ● El servicio de alojamiento se debe cancelar antes del vencimiento
+            de la fecha límite de pago, de lo contrario Confa hará uso de la
+            unidad habitacional para ofertar nuevamente sin previo aviso. Los
+            pagos se pueden realizar mediante consignación bancaria a la cuenta
+            de ahorros No 7055609072-6 Bancolombia a nombre de Caja de
+            Compensaciòn Familiar de Caldas, o en las sedes de Confa ubicadas en
+            La 50, San Marcel, Centro Empresarial Capitalia, CIAC y en los
+            diferentes municipios de Caldas.
+          </p>
+          <p>
+            ● La modificación de personas en la reserva del alojamiento deben
+            ser comunicadas en los puntos de venta de Confa, y para el caso del
+            Portal Web se podrán realizar previo al pago de la reserva.
+          </p>
+          <p>
+            ● Para la asignación de alojamiento en fechas como Semana Santa, 24
+            y 31 de diciembre, se le dará prioridad de 1 unidad habitacional al
+            grupo familiar cada tres años para estas fechas, (excepto para el
+            centro vacacional El Bosque en Pensilvania), en las demás temporadas
+            altas del año si se cuenta con la capacidad disponible, el
+            trabajador afiliado podrá solicitar máximo 2 unidades
+            habitacionales, en temporada baja fin de semana el trabajador
+            afiliado podrá solicitar máximo 4 unidades habitacionales en el año.
+            La reserva máxima por unidad habitacional en temporadas altas es de
+            seis (6) días-cinco (5) noches y la mínima es de tres (3) días- dos
+            (2) noches.
+          </p>
+          <p>● La reserva de alojamiento es personal e intransferible.</p>
+          <p>
+            ● El trabajador afiliado deberá presentarse en el Centro
+            Recreacional y permanecer durante su estadía con el grupo de
+            asistentes. En caso de no poder recibir la unidad habitacional, debe
+            autorizar mediante correo electrónico
+            <b
+              ><a
+                href="mailTo:centros.vacacionales@confamiliares.com"
+                class="link-politicas"
+                >centros.vacacionales@confamiliares.com</a
+              ></b
+            >
+            un miembro del grupo familiar (cónyuge o padres), explicando los
+            motivos y deberá ser autorizado previamente desde cualquier punto de
+            venta de Confa; de lo contrario, dará lugar al cambio de jefe de
+            grupo y se liquidará de acuerdo con la nueva categoría del carné de
+            los asistentes.
+          </p>
+          <p>
+            ● El Jefe de grupo y/o quien legalice la reserva, se compromete a
+            informar y asegurar que los demás acompañantes alojados conozcan las
+            normas y recomendaciones para el uso del servicio de alojamiento,
+            obligándose a acatarlas y eximiendo a Confa de toda responsabilidad
+            por omisiòn de las mismas.
+          </p>
+          <p>
+            ● El trabajador y los asistentes deben cumplir las normas y
+            recomendaciones durante su estadía en el centro recreacional, hacer
+            buen uso de las instalaciones, bienes y servicios, siguiendo las
+            indicaciones, evitando molestias o perjuicio a los demás alojados de
+            conformidad con lo establecido en el decreto 2590 del año 2009
+            artículo 6o.
+          </p>
+          <p>
+            ● Está restringido el ingreso y uso de equipos de sonido de alta
+            potencia que afecten la tranquilidad y descanso de los demás
+            huéspedes durante la estadía en el centro recreacional.
+          </p>
+          <p>
+            ● Las personas relacionadas en la reserva deben presentar los
+            documentos de identidad al momento de ingreso, de lo contrario no
+            podrán disfrutar del servicio.
+          </p>
+          <p>
+            ● El trabajador que se encuentra afiliado a otra caja de
+            compensación y solicita el servicio de alojamiento, debe presentar
+            en el check in el respectivo certificado de afiliación a la Caja con
+            el fin de conservar la tarifa convenio.
+          </p>
+          <p>
+            ● Los usuarios extranjeros (niños o adultos) en el check in, deben
+            siempre presentar pasaporte vigente o cédula de extranjería, de lo
+            contrario no podrán ser registrados.
+          </p>
+          <p>
+            ● No se admiten personas en estado de embriaguez o bajo efecto de
+            sustancias psicoactivas dentro de las instalaciones del Centro
+            Recreacional.
+          </p>
+          <p>● No se permite el ingreso de mascotas.</p>
+          <p>
+            ● En caso de desistir de usar la reserva antes de la fecha
+            estipulada y para efectos de devolución del dinero, debe presentar
+            la solicitud a Confa en Manizales sedes La 50, San Marcel,
+            Capitalia, CIAC o Mallplaza o a la sede del municipio donde vive.
+            También la puede enviar al correo electrónico
+            <b
+              ><a href="mailTo:alojamiento@confa.co" class="link-politicas"
+                >alojamiento@confa.co</a
+              ></b
+            >
+            manifestando la causa del no uso del servicio y anexando fotocopia
+            de la cédula y certificación bancaria del titular de la reserva.
+            Confa realizará la devolución del 80% del importe pagado dentro de
+            los 30 días siguientes a la radicación de la solicitud de acuerdo a
+            lo estipulado con la ley 300 de 1996.
+          </p>
+          <p>
+            ● Todo menor de edad que no se aloje en compañía de los padres
+            deberá presentar en el check in permiso por escrito de los mismos,
+            acompañado por fotocopia de la cédula para poder ser registrados.
+          </p>
+          <p>● Confa se reserva el derecho de admisión.</p>
+          <p>
+            ● Los apartamentos del bloque uno y dos de Chambacú del Centro
+            Recreacional La Rochela, cuentan con cocineta solo para la
+            preparación de snacks.
+          </p>
+          <p>
+            ● Los apartamentos del bloque tres del Centro Recreacional La
+            Rochela no cuentan con el servicio de cocina, por lo tanto no está
+            permitida la preparación de alimentos.
+          </p>
+          <p>
+            ● Se recomienda usar las cajillas de seguridad ubicadas en las
+            unidades habitacionales. Confa no se hace responsable por pérdida o
+            daños de objetos.
+          </p>
+          <p>
+            ● El huésped debe portar siempre la manilla de identificación
+            entregada en recepción.
+          </p>
+          <p>
+            ● El usuario y visitantes de los servicios de recreación deben dar
+            cumplimiento a los protocolos de bioseguridad establecidos al
+            momento de la compra y prestación de los servicios.
+          </p>
+          <p>
+            ● Todos los usuarios y acompañantes deben abstenerse de visitar las
+            instalaciones si presenta síntomas asociados a Covid-19.
+          </p>
+          <p>
+            <b>Check in</b>
+            <br />
+            ● El alojamiento en temporada baja se entrega de lunes a viernes
+            después de las 4:00 p.m. hasta las 10:00 p.m. y sábado a partir de
+            las 12: 00 m. hasta las 10: 00 p.m; en temporada alta de lunes a
+            viernes se entrega después de las 6:00 p.m. y sábado a partir de las
+            12:00 m. hasta las 10:00. p.m, Teniendo en cuenta estos horarios se
+            agendará la hora de ingreso con el usuario de acuerdo a los
+            protocolos de Bioseguridad.
+          </p>
+          <p>
+            <b>Check out</b>
+            <br />
+            ● La unidad habitacional se debe entregar de lunes a viernes hasta
+            las 2 p.m, domingos y festivos máximo hasta las 3:00 p.m, de lo
+            contrario se deberá asumir un pago adicional por los costos en que
+            incurra el servicio, Teniendo en cuenta estos horarios se agendará
+            la hora de salida con el usuario de acuerdo a los protocolos de
+            Bioseguridad.
+          </p>
+          <p>
+            El incumplimiento de las recomendaciones generales del centro
+            recreacional puede ser causa de:
+          </p>
+          <p>
+            1. Expulsión del centro recreacional de conformidad con lo
+            establecido en el decreto 2590 de 2009 artículo 6to contrato de
+            hospedaje, cuando la conducta y el comportamiento de los huéspedes
+            atenten contra la tranquilidad, la seguridad y la salubridad de los
+            demás huéspedes o residentes, lo anterior también se aplicará cuando
+            el hospedado o sus acompañantes violen lo establecido en el presente
+            reglamento al cual está sometida la vivienda turística que se ocupa.
+          </p>
+          <p>
+            2. Bloqueo del servicio de alojamiento por 2 años, en todos los
+            centros recreacionales de Confa, para el jefe de grupo y/o quienes
+            incurran en el incumplimiento, los cuales no podrá reservar ni
+            ingresar en calidad de alojado invitado, por no cumplir “Normas y
+            recomendaciones para el uso del servicio de alojamiento en los
+            Centros Recreacionales de Confa”, previo agotamiento del derecho
+            constitucional al debido proceso. (que podrá ser consultado en la
+            página web en el siguientelink.
+            <a
+              href="https://confa.co/wp-content/uploads/2019/10/Interface-Aplicativo-Debido-Proceso-normas-y-recomendaciones-Alojamentos-800x480px-2019.pdf"
+              target="_blank"
+              class="link-politicas"
+              >https://confa.co/wp-content/uploads/2019/10/Interface-Aplicativo-Debido-Proceso-normas-y-recomendaciones-Alojamentos-800x480px-2019.pdf</a
+            >
+          </p>
+          <p>
+            <i>
+              Confa está comprometido con el cumplimiento del artículo 16 de la
+              ley 679 de 2001 y rechaza todo tipo de explotación, pornográfica,
+              turismo sexual y violencia a los menores de edad.
+            </i>
+          </p>
+        </div>
+
+        <div class="col-md-12">
+          <div class="spacer10"></div>
+          <button
+            href="javascript:;"
+            class="btn btn-primary login-button filter"
+            (click)="closeTerms()"
+          >
+            <i class="fa fa-spinner fa-spin fa fa-fw" *ngIf="loader"></i>
+            <span class="sr-only"></span>
+            Volver
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<!-- Button trigger modal -->
+<button
+  type="button"
+  class="btn btn-primary modal-alert-reserve"
+  data-toggle="modal"
+  data-target="#modal-alert-reserve"
+>
+  modal
+</button>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="modal-alert-reserve"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="modal-alert-reserveTitle"
+  aria-hidden="true"
+  data-backdrop="static"
+  data-keyboard="false"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div
+        class="modal-header d-flex align-items-center justify-content-center m-3"
+      >
+        <div class="">
+          <img
+            src="assets\images\warning.png"
+            alt="warning"
+            width="70px"
+            class="animate__animated animate__fadeIn animate__fast"
+          />
+        </div>
+      </div>
+      <div class="modal-body cuerpomodal">
+        <div class="textbody">
+          <p>
+            <b>Ten en cuenta:</b> un día antes de la fecha de tu alojamiento
+            deberás realizar tu <b>check in</b> donde validaremos tu estado de
+            salud y el de tus acompañantes y confirmaremos tu reserva, para esto
+            necesitarás el número de reserva dado.
+          </p>
+        </div>
+        <div class="d-flex align-items-center justify-content-center pb-3 pt-1">
+          <button
+            type="button"
+            class="btn buttonclosemodal"
+            data-dismiss="modal"
+            (click)="reserve()"
+          >
+            Continuar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Button trigger modal -->
+<button
+  hidden
+  type="button"
+  class="btn btn-primary modal-acompanantes"
+  data-toggle="modal"
+  data-target="#modal-acompanantes"
+></button>
+
+<!-- Modal warning acompanantes registrados-->
+<div
+  class="modal fade"
+  id="modal-acompanantes"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="modal-acompanantes"
+  aria-hidden="true"
+  data-backdrop="static"
+  data-keyboard="false"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div
+        class="modal-header d-flex align-items-center justify-content-center m-3"
+      >
+        <div class="">
+          <img
+            src="assets\images\warning.png"
+            alt="warning"
+            width="70px"
+            class="animate__animated animate__fadeIn animate__fast"
+          />
+        </div>
+      </div>
+      <div class="modal-body cuerpomodal">
+        <div class="textbody">
+          <p>
+            Todos tus acompañantes deben estar registrados para poder ingresar
+            al alojamiento.
+          </p>
+        </div>
+        <div class="d-flex align-items-center justify-content-center pb-3 pt-1">
+          <button
+            type="button"
+            class="btn buttonclosemodal"
+            data-dismiss="modal"
+          >
+            Continuar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

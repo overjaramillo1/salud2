@@ -1,0 +1,120 @@
+<div class="page-wrapper">
+    <div id="body-content">
+        <div class="home-accommodation">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="search">
+                            <a href="javascript:;" (click)="volver()">
+                                <i class="fa fa-arrow-left" aria-hidden="true"></i>&nbsp; Atrás
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-9 text-right breadcrumbs ">
+                        <a href="javascript:;" routerLink="/alojamiento">
+                            <i class="fa fa-chevron-right" aria-hidden="true"></i> B&uacute;squeda avanzada
+                        </a>
+                        <a href="javascript:;" class="active">
+                            <i class="fa fa-chevron-right" aria-hidden="true"></i> Mis reservas
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-left">
+                <h3 class="titles">Tus reservas</h3>
+            </div>
+            <div class="col-md-4">
+                <span class="titles">Titular </span><br />
+                <!-- <b *ngIf="user.nombreBeneficiario">{{user.nombreBeneficiario}}</b> -->
+                <b>{{ user.primerNombre }} {{ user.primerApellido }}
+          {{ user.segundoApellido }}</b
+        >
+      </div>
+      <div class="col-md-4">
+        <span class="titles">Documento</span> <br />
+        <b>{{ user.documento }}</b>
+            </div>
+        </div>
+
+        <div class="spacer40"></div>
+
+        <div class="col-md-12" *ngIf="ReservesList.length > 0">
+            <div class="row details p-10" *ngFor="let reserve of ReservesList">
+                <div class="col-md-3 first p-10">
+                    Centro Recreacional {{ reserve.nombreCentroVacacional | titlecase | eliminarNumeros}}
+                    <br />
+                    <b>{{ reserve.numeroUnidad | eliminarNumeros }}</b
+          ><br />
+          <span class="titles"
+            >Capacidad de alojamiento: {{ reserve.capacidad }} Personas</span
+          >
+        </div>
+        <div class="col-md-6 second p-10">
+          <div class="row">
+            <div class="col">
+              Fecha Ingreso: <br />
+              <b>{{ reserve.fechaIngreso | date: "MMMM d, y" | titlecase }}</b>
+                </div>
+                <div class="col">
+                    Fecha Salida: <br />
+                    <b>{{ reserve.fechaSalida | date: "MMMM d, y" | titlecase }}</b>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 third p-10">
+            Número de Reserva: <b>{{ reserve.reservaId }}</b
+          ><br />
+          Pagó: <b>{{ reserve.pago }}</b>
+        </div>
+        <div class="col-md-12 quarter p-10">
+            <div class="pay-limit">
+                <span>Fecha Límite Pago</span><br />
+                <span class="titles">
+              {{
+                reserve.fechaLimitePago | date: "MMMM d, y" | titlecase
+              }}</span
+            >
+          </div>
+          <div class="button">
+            <!-- <button class="btn btn-primary filter mr-3 mb-3" *ngIf="getactiveCheckin(reserve.fechaIngreso)"   routerLink="/alojamiento/checkin-health/{{reserve.reservaId}}"placement="right" tooltip="Realiza el checking de los asistentes." >Check-in</button> -->
+            <button class="btn btn-primary filter mr-3 mb-3 botondesabilitado" *ngIf="!getactiveCheckin(reserve.fechaIngreso)"  placement="right" tooltip="Podrás realizar el check in un día antes del ingreso" >Check in</button>
+            <button class="btn btn-primary filter mr-3 mb-3" *ngIf="getactiveCheckin(reserve.fechaIngreso)"  placement="right" tooltip="Realiza el checking de los asistentes." (click)="checkin(reserve.reservaId)">Check in </button>
+            
+            <button
+              class="btn btn-primary filter mr-3 mb-3"
+              (click)="FindReserve(reserve.reservaId)"
+              placement="right"
+              tooltip="Modifica asistentes, anula o paga tu reserva. "
+            >
+              Ver detalles
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  
+
+<div class="overlay" [class.open]="showOverlay">
+  <div class="img text-center">
+    <img
+      src="../../assets/images/loading.png"
+      alt=""
+      style=" width: 15%;margin-top: 5%"
+    />
+  </div>
+  <div class="row">
+    <div class="col-md-12 text-center loading-message">
+      <h2>{{ "messages.loading" | translate }}</h2>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,614 @@
+<div class="overlay" [class.open]="showOverlay">
+  <div class="img text-center">
+    <img
+      src="../../assets/images/loading.png"
+      alt=""
+      style="width: 15%; margin-top: 5%"
+    />
+  </div>
+  <div class="row">
+    <div class="col-md-12 text-center loading-message">
+      <h2>{{ "messages.loading" | translate }}</h2>
+    </div>
+  </div>
+</div>
+
+<div class="page-wrapper">
+  <div id="body-content">
+    <div class="home-accommodation">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-3">
+            <div class="search">
+              <a href="javascript:;" (click)="volver()">
+                <i class="fa fa-arrow-left" aria-hidden="true"></i>&nbsp;
+                Atrás
+              </a>
+            </div>
+          </div>
+          <div class="col-md-9 text-right breadcrumbs">
+            <a href="javascript:;" routerLink="/alojamiento">
+              <i class="fa fa-chevron-right" aria-hidden="true"></i>
+              B&uacute;squeda avanzada
+            </a>
+            <a href="javascript:;" routerLink="/alojamiento/list-reserves">
+              <i class="fa fa-chevron-right" aria-hidden="true"></i> Mis
+              reservas
+            </a>
+            <a href="javascript:;" class="active">
+              <i class="fa fa-chevron-right" aria-hidden="true"></i> Check-in
+              estado de salud
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<section class="contenedorformulario pt-2">
+  <div class="container mt-3">
+    <div class="tituloform">
+      En Confa nos preocupamos por tu salud y para poder completar el proceso de
+      reserva
+    </div>
+
+    <form [formGroup]="formChekin" (submit)="submit()">
+      <div id="accordion" class="mt-4">
+        <div
+          formArrayName="sintomas"
+          *ngFor="let sintoma of sintomasform().controls; let i = index"
+        >
+          <div [formGroupName]="i">
+            <div class="card">
+              <div class="card-header" id="headingOne">
+                <h5 class="mb-0">
+                  <i
+                    [attr.id]="'arrow' + i"
+                    class="fas"
+                    [ngClass]="{
+                      'fa-chevron-down': i == 0,
+                      'fa-chevron-right': i != 0
+                    }"
+                  ></i>
+                  <button
+                    class="btn btn-link collapsed nombre-persona"
+                    data-toggle="collapse"
+                    [attr.data-target]="'#collapse-' + i"
+                    [attr.aria-expanded]="false"
+                    [attr.aria-controls]="'collapse-' + i"
+                    (click)="funcionArrow(i)"
+                    type="button"
+                  >
+                    {{ listaAsistentes[i].nombre }}
+                  </button>
+                </h5>
+              </div>
+              <div
+                [attr.id]="'collapse-' + i"
+                class="collapse collapse-body"
+                [ngClass]="{ show: i == 0 }"
+                aria-labelledby="headingOne"
+                data-parent="#accordion"
+              >
+                <div class="card-body">
+                  <div class="sub-title mt-3">
+                    ¿Has presentado alguno de los siguientes síntomas?
+                  </div>
+
+                  <div class="sintomas">
+                    <div class="row row-white">
+                      <div class="col-12 col-md-8">
+                        <label for="">Dolor de garganta</label>
+                      </div>
+                      <div class="col-3 col-sm-2">
+                        <label class="pr-2" [attr.for]="'dolorGarganta' + i"
+                          >Si</label
+                        >
+                        <input
+                          type="radio"
+                          [attr.name]="'dolorGarganta' + i"
+                          [attr.id]="'dolorGarganta' + i"
+                          value="Si"
+                          formControlName="dolorGarganta"
+                        />
+                      </div>
+                      <div class="col-3 col-sm-2">
+                        <label class="pr-2" [attr.for]="'dolorGarganta' + i"
+                          >No</label
+                        >
+                        <input
+                          type="radio"
+                          [attr.name]="'dolorGarganta' + i"
+                          [attr.id]="'dolorGarganta' + i"
+                          value="No"
+                          formControlName="dolorGarganta"
+                        />
+                      </div>
+                    </div>
+
+                    <div class="row row-white">
+                      <div class="col-12 col-md-8">
+                        <label for="">Tos seca persistente</label>
+                      </div>
+                      <div class="col-3 col-sm-2">
+                        <label class="pr-2" [attr.for]="'tosSeca' + i"
+                          >Si</label
+                        >
+                        <input
+                          type="radio"
+                          [attr.name]="'tosSeca' + i"
+                          [attr.id]="'tosSeca' + i"
+                          value="Si"
+                          formControlName="tosSeca"
+                        />
+                      </div>
+                      <div class="col-3 col-sm-2">
+                        <label class="pr-2" [attr.for]="'tosSeca' + i"
+                          >No</label
+                        >
+                        <input
+                          type="radio"
+                          [attr.name]="'tosSeca' + i"
+                          [attr.id]="'tosSeca' + i"
+                          value="No"
+                          formControlName="tosSeca"
+                        />
+                      </div>
+                    </div>
+                    <div class="row row-white">
+                      <div class="col-12 col-md-8">
+                        <label for="">Dificultad para respirar</label>
+                      </div>
+                      <div class="col-3 col-sm-2">
+                        <label
+                          class="pr-2"
+                          [attr.for]="'dificultadRespiratoria' + i"
+                          >Si</label
+                        >
+                        <input
+                          type="radio"
+                          [attr.name]="'dificultadRespiratoria' + i"
+                          [attr.id]="'dificultadRespiratoria' + i"
+                          value="Si"
+                          formControlName="dificultadRespiratoria"
+                        />
+                      </div>
+                      <div class="col-3 col-sm-2">
+                        <label
+                          class="pr-2"
+                          [attr.for]="'dificultadRespiratoria' + i"
+                          >No</label
+                        >
+                        <input
+                          type="radio"
+                          [attr.name]="'dificultadRespiratoria' + i"
+                          [attr.id]="'dificultadRespiratoria' + i"
+                          value="No"
+                          formControlName="dificultadRespiratoria"
+                        />
+                      </div>
+                    </div>
+                    <div class="row row-white">
+                      <div class="col-12 col-md-8">
+                        <label for="">Dolor de cabeza intenso</label>
+                      </div>
+                      <div class="col-3 col-sm-2">
+                        <label class="pr-2" [attr.for]="'dolorCabeza' + i"
+                          >Si</label
+                        >
+                        <input
+                          type="radio"
+                          [attr.name]="'dolorCabeza' + i"
+                          [attr.id]="'dolorCabeza' + i"
+                          value="Si"
+                          formControlName="dolorCabeza"
+                        />
+                      </div>
+                      <div class="col-3 col-sm-2">
+                        <label class="pr-2" [attr.for]="'dolorCabeza' + i"
+                          >No</label
+                        >
+                        <input
+                          type="radio"
+                          [attr.name]="'dolorCabeza' + i"
+                          [attr.id]="'dolorCabeza' + i"
+                          value="No"
+                          formControlName="dolorCabeza"
+                        />
+                      </div>
+                    </div>
+                    <div class="row row-white">
+                      <div class="col-12 col-md-8">
+                        <label for="">Diarrea y vómito</label>
+                      </div>
+                      <div class="col-3 col-sm-2">
+                        <label class="pr-2" [attr.for]="'diarreaVomito' + i"
+                          >Si</label
+                        >
+                        <input
+                          type="radio"
+                          [attr.name]="'diarreaVomito' + i"
+                          [attr.id]="'diarreaVomito' + i"
+                          value="Si"
+                          formControlName="diarreaVomito"
+                        />
+                      </div>
+                      <div class="col-3 col-sm-2">
+                        <label class="pr-2" [attr.for]="'diarreaVomito' + i"
+                          >No</label
+                        >
+                        <input
+                          type="radio"
+                          [attr.name]="'diarreaVomito' + i"
+                          [attr.id]="'diarreaVomito' + i"
+                          value="No"
+                          formControlName="diarreaVomito"
+                        />
+                      </div>
+                    </div>
+                    <div class="row row-white">
+                      <div class="col-12 col-md-8">
+                        <label for="">Percepción de fiebre</label>
+                      </div>
+                      <div class="col-3 col-sm-2">
+                        <label class="pr-2" [attr.for]="'fiebre' + i">Si</label>
+                        <input
+                          type="radio"
+                          [attr.name]="'fiebre' + i"
+                          [attr.id]="'fiebre' + i"
+                          value="Si"
+                          formControlName="fiebre"
+                        />
+                      </div>
+                      <div class="col-3 col-sm-2">
+                        <label class="pr-2" [attr.for]="'fiebre' + i">No</label>
+                        <input
+                          type="radio"
+                          [attr.name]="'fiebre' + i"
+                          [attr.id]="'fiebre' + i"
+                          value="No"
+                          formControlName="fiebre"
+                        />
+                      </div>
+                    </div>
+                    <div class="row row-white">
+                      <div class="col-12 col-md-8">
+                        <label for=""
+                          >Congestión nasal (no relacionado con alergias)</label
+                        >
+                      </div>
+                      <div class="col-3 col-sm-2">
+                        <label class="pr-2" [attr.for]="'congestionNasal' + i"
+                          >Si</label
+                        >
+                        <input
+                          type="radio"
+                          [attr.name]="'congestionNasal' + i"
+                          [attr.id]="'congestionNasal' + i"
+                          value="Si"
+                          formControlName="congestionNasal"
+                        />
+                      </div>
+                      <div class="col-3 col-sm-2">
+                        <label class="pr-2" [attr.for]="'congestionNasal' + i"
+                          >No</label
+                        >
+                        <input
+                          type="radio"
+                          [attr.name]="'congestionNasal' + i"
+                          [attr.id]="'congestionNasal' + i"
+                          value="No"
+                          formControlName="congestionNasal"
+                        />
+                      </div>
+                    </div>
+                    <div class="row row-white">
+                      <div class="col-12 col-md-8">
+                        <label for="">Dolor muscular y escalofríos</label>
+                      </div>
+                      <div class="col-3 col-sm-2">
+                        <label class="pr-2" [attr.for]="'dolorMuscular' + i"
+                          >Si</label
+                        >
+                        <input
+                          type="radio"
+                          [attr.name]="'dolorMuscular' + i"
+                          [attr.id]="'dolorMuscular' + i"
+                          value="Si"
+                          formControlName="dolorMuscular"
+                        />
+                      </div>
+                      <div class="col-3 col-sm-2">
+                        <label class="pr-2" [attr.for]="'dolorMuscular' + i"
+                          >No</label
+                        >
+                        <input
+                          type="radio"
+                          [attr.name]="'dolorMuscular' + i"
+                          [attr.id]="'dolorMuscular' + i"
+                          value="No"
+                          formControlName="dolorMuscular"
+                        />
+                      </div>
+                    </div>
+
+                    <div class="row row-white">
+                      <div class="col-12 col-md-8">
+                        <label for=""
+                          >¿Has estado en contacto estrecho sin el uso de
+                          elementos de protección con alguna persona sospechosa
+                          o confirmada de coronavirus?</label
+                        >
+                      </div>
+                      <div class="col-3 col-sm-2">
+                        <label class="pr-2" [attr.for]="'contactoEstrecho' + i"
+                          >Si</label
+                        >
+                        <input
+                          type="radio"
+                          [attr.name]="'contactoEstrecho' + i"
+                          [attr.id]="'contactoEstrecho' + i"
+                          value="Si"
+                          formControlName="contactoEstrecho"
+                        />
+                      </div>
+                      <div class="col-3 col-sm-2">
+                        <label class="pr-2" [attr.for]="'contactoEstrecho' + i"
+                          >No</label
+                        >
+                        <input
+                          type="radio"
+                          [attr.name]="'contactoEstrecho' + i"
+                          [attr.id]="'contactoEstrecho' + i"
+                          value="No"
+                          formControlName="contactoEstrecho"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="sub-title">
+                    Ingresa el dato de tu temperatura aquí:
+                  </div>
+                  <div>
+                    <div class="sintomas">
+                      <div class="row row-white">
+                        <div class="col-12 col-md-8">
+                          <label
+                            class="pr-2 temperatura"
+                            [attr.for]="'temperatura' + i"
+                            >35.0°C - 35.5°C</label
+                          >
+                          <input
+                            type="radio"
+                            [attr.name]="'temperatura' + i"
+                            [attr.id]="'temperatura' + i"
+                            value="1"
+                            formControlName="temperatura"
+                          />
+                        </div>
+                      </div>
+                      <div class="row row-white">
+                        <div class="col-12 col-md-8">
+                          <label
+                            class="pr-2 temperatura"
+                            [attr.for]="'temperatura' + i"
+                            >35.6°C - 36.0°C</label
+                          >
+                          <input
+                            type="radio"
+                            [attr.name]="'temperatura' + i"
+                            [attr.id]="'temperatura' + i"
+                            value="2"
+                            formControlName="temperatura"
+                          />
+                        </div>
+                      </div>
+                      <div class="row row-white">
+                        <div class="col-12 col-md-8">
+                          <label
+                            class="pr-2 temperatura"
+                            [attr.for]="'temperatura' + i"
+                            >36.1°C - 36.5°C</label
+                          >
+                          <input
+                            type="radio"
+                            [attr.name]="'temperatura' + i"
+                            [attr.id]="'temperatura' + i"
+                            value="3"
+                            formControlName="temperatura"
+                          />
+                        </div>
+                      </div>
+                      <div class="row row-white">
+                        <div class="col-12 col-md-8">
+                          <label
+                            class="pr-2 temperatura"
+                            [attr.for]="'temperatura' + i"
+                            >36.6°C - 37.0°C</label
+                          >
+                          <input
+                            type="radio"
+                            [attr.name]="'temperatura' + i"
+                            [attr.id]="'temperatura' + i"
+                            value="4"
+                            formControlName="temperatura"
+                          />
+                        </div>
+                      </div>
+                      <div class="row row-white">
+                        <div class="col-12 col-md-8">
+                          <label
+                            class="pr-2 temperatura"
+                            [attr.for]="'temperatura' + i"
+                            >37.1°C - 37.6°C</label
+                          >
+                          <input
+                            type="radio"
+                            [attr.name]="'temperatura' + i"
+                            [attr.id]="'temperatura' + i"
+                            value="5"
+                            formControlName="temperatura"
+                          />
+                        </div>
+                      </div>
+                      <div class="row row-white">
+                        <div class="col-12 col-md-8">
+                          <label
+                            class="pr-2 temperatura"
+                            [attr.for]="'temperatura' + i"
+                            >Más de 37.7°C</label
+                          >
+                          <input
+                            type="radio"
+                            [attr.name]="'temperatura' + i"
+                            [attr.id]="'temperatura' + i"
+                            value="6"
+                            formControlName="temperatura"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <button type="submit" class="btn btn-primary filter">Terminar check in</button> -->
+      <button
+        class="btn btn-primary filter mr-3 mb-3 botondesabilitado"
+        *ngIf="this.formChekin.invalid"
+        placement="right"
+        tooltip="Faltan algunas respuestas."
+        type="submit"
+      >
+        Terminar check in
+      </button>
+      <button
+        class="btn btn-primary filter mr-3 mb-3"
+        *ngIf="!this.formChekin.invalid"
+        placement="right"
+        tooltip="Realiza el checking estado de salud de los asistentes."
+        type="submit"
+      >
+        Terminar check in
+      </button>
+    </form>
+  </div>
+</section>
+
+<!-- Button succes -->
+<button
+  hidden
+  type="button"
+  class="btn btn-primary modal-alert-reserve"
+  data-toggle="modal"
+  data-target="#modal-guardar-checkin"
+></button>
+
+<!-- Modal succes checkin-->
+<div
+  class="modal fade"
+  id="modal-guardar-checkin"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="modal-alert-reserveTitle"
+  aria-hidden="true"
+  data-backdrop="static"
+  data-keyboard="false"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div
+        class="modal-header d-flex align-items-center justify-content-center m-3"
+      >
+        <div class="">
+          <img
+            src="assets\images\success.png"
+            alt="warning"
+            width="70px"
+            class="animate__animated animate__fadeIn animate__fast"
+          />
+        </div>
+      </div>
+      <div class="modal-body cuerpomodal">
+        <div class="textbody">
+          <p>
+            Nuestros espacios se llenan de vida cuando estás en ellos, te
+            esperamos para que disfrutes de tu estadía, de un tiempo de descanso
+            y diversión.<br /><b>¡Bienvenidos!</b>
+          </p>
+        </div>
+        <div class="d-flex align-items-center justify-content-center pb-3 pt-1">
+          <button
+            type="button"
+            class="btn buttonclosemodal"
+            data-dismiss="modal"
+            routerLink="/alojamiento/list-reserves"
+          >
+            Continuar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal medida preventiva -->
+<button
+  hidden
+  type="button"
+  class="btn btn-primary modal-alert-reserve"
+  data-toggle="modal"
+  data-target="#modal-medida-preventiva"
+></button>
+
+<!-- Modal medida preventiva-->
+<div
+  class="modal fade"
+  id="modal-medida-preventiva"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="modal-alert-reserveTitle"
+  aria-hidden="true"
+  data-backdrop="static"
+  data-keyboard="false"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div
+        class="modal-header d-flex align-items-center justify-content-center m-3"
+      >
+        <div class="">
+          <img
+            src="assets\images\error.png"
+            alt="warning"
+            width="70px"
+            class="animate__animated animate__fadeIn animate__fast"
+          />
+        </div>
+      </div>
+      <div class="modal-body cuerpomodal">
+        <div class="textbody">
+          <p>
+            Como medida preventiva y de mitigación ante el contagio de Covid-19
+            debes estar en óptimas condiciones de salud para visitar uno de
+            nuestros <b>Centros Recreacionales Confa</b>, en esta oportunidad no
+            podemos recibirte, pero esperamos hacerlo muy pronto.
+          </p>
+        </div>
+        <div class="d-flex align-items-center justify-content-center pb-3 pt-1">
+          <button
+            type="button"
+            class="btn buttonclosemodal"
+            data-dismiss="modal"
+            routerLink="/alojamiento/list-reserves"
+          >
+            Cerrar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

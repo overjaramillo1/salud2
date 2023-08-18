@@ -1,0 +1,86 @@
+section.contenedorformulario {
+  background-color: #f2f2f2;
+}
+
+div.tituloform {
+  color: #ff2b81;
+  font-size: 34px;
+  font-weight: bold;
+  line-height: 1;
+}
+
+button.nombre-persona,
+div.sub-title {
+  color: #ff2b81;
+  font-size: 22px;
+  font-weight: bold;
+  line-height: 1;
+}
+
+button.nombre-persona {
+  font-size: 25px !important;
+}
+
+div.sub-title {
+  margin: 0;
+}
+
+div.card {
+  margin-bottom: 8px;
+  background-color: transparent;
+  border: transparent;
+}
+
+.collapse-body,
+.card-body {
+  background-color: #f2f2f2;
+}
+
+.card-body {
+  padding: 0;
+}
+
+.sintomas {
+  padding: 1rem;
+}
+
+div.card-header {
+  background-color: white;
+  position: relative;
+}
+
+i.fas {
+  position: absolute;
+  left: -21px;
+  color: #ff2b81;
+  font-size: 28px;
+  font-weight: bold;
+  line-height: 1.5;
+}
+
+i.fa-chevron-down {
+  left: -28px !important;
+}
+
+div.row-white {
+  background-color: white;
+  margin-bottom: 4px;
+}
+
+div.row-white label {
+  font-size: 18px;
+}
+
+.btn-primary.disabled,
+.btn-primary:disabled {
+  background-color: white;
+  border-color: #666666;
+  color: #666666;
+  cursor: auto;
+}
+
+button.btn-primary {
+  margin: 29px 0 48px;
+  font-size: 18px;
+}
+/*# sourceMappingURL=checkin-health.component.css.map */
